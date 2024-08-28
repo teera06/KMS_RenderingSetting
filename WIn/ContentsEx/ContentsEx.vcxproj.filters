@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="ContentExCore.h" />
+    <ClInclude Include="TestTitleLevel.h">
+      <Filter>Object\TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestTitleLogo.h">
+      <Filter>Object\TitleLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPlayLevel.h">
+      <Filter>Object\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPlayer.h">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsHelper.h" />
+    <ClInclude Include="BackGroundMap.h">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLevel.h">
+      <Filter>Object\TestLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMonster.h">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftRenderingLevel.h">
+      <Filter>Object\SoftLevel</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ContentExCore.cpp" />
+    <ClCompile Include="TestTitleLevel.cpp">
+      <Filter>Object\TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestTitleLogo.cpp">
+      <Filter>Object\TitleLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayLevel.cpp">
+      <Filter>Object\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayer.cpp">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsHelper.cpp" />
+    <ClCompile Include="BackGroundMap.cpp">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>Object\TestLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMonster.cpp">
+      <Filter>Object\PlayLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftRenderingLevel.cpp">
+      <Filter>Object\SoftLevel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{878a7e62-f75b-4e96-9b75-23eb6f9576e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\PlayLevel">
+      <UniqueIdentifier>{c893d6b2-fb42-4d8d-bf5c-e6c93fdf5686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\TitleLevel">
+      <UniqueIdentifier>{adad8fa6-29e6-416a-8342-398430583097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\TitleLevel\Actor">
+      <UniqueIdentifier>{96df89dd-2842-42c9-8f9e-b9d81ba74b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\PlayLevel\Actor">
+      <UniqueIdentifier>{d3114b7f-034b-4d53-af2b-819e9762283e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\TestLevel">
+      <UniqueIdentifier>{c1a8fa36-7df8-4787-883c-3679b13734f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\SoftLevel">
+      <UniqueIdentifier>{0c13f749-9a97-4950-856d-8317c59b9e86}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
