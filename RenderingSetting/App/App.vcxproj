@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4daa5067-49cf-4752-bed6-b4ad194b0d19}</ProjectGuid>
-    <RootNamespace>EngineBase</RootNamespace>
+    <ProjectGuid>{5cc2a4dd-5b2d-42b2-a620-8ef7adaba023}</ProjectGuid>
+    <RootNamespace>App</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -143,32 +143,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EngineDebug.cpp" />
-    <ClCompile Include="EngineDirectory.cpp" />
-    <ClCompile Include="EngineFile.cpp" />
-    <ClCompile Include="EngineMath.cpp" />
-    <ClCompile Include="EnginePath.cpp" />
-    <ClCompile Include="EngineRandom.cpp" />
-    <ClCompile Include="EngineSerializer.cpp" />
-    <ClCompile Include="EngineString.cpp" />
-    <ClCompile Include="EngineTime.cpp" />
-    <ClCompile Include="NameObject.cpp" />
-    <ClCompile Include="PathObject.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="App.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EngineDebug.h" />
-    <ClInclude Include="EngineDirectory.h" />
-    <ClInclude Include="EngineFile.h" />
-    <ClInclude Include="EngineMath.h" />
-    <ClInclude Include="EnginePath.h" />
-    <ClInclude Include="EngineRandom.h" />
-    <ClInclude Include="EngineSerializer.h" />
-    <ClInclude Include="EngineString.h" />
-    <ClInclude Include="EngineTime.h" />
-    <ClInclude Include="NameObject.h" />
-    <ClInclude Include="PathObject.h" />
-    <ClInclude Include="Transform.h" />
+    <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">
+      <Project>{4daa5067-49cf-4752-bed6-b4ad194b0d19}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\EngineWindow\EngineWindow.vcxproj">
+      <Project>{73ccc049-332e-4d86-8f7e-6fe3ef6248cd}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4daa5067-49cf-4752-bed6-b4ad194b0d19}</ProjectGuid>
-    <RootNamespace>EngineBase</RootNamespace>
+    <ProjectGuid>{66b8be87-e006-41b5-b9eb-16bea9c62894}</ProjectGuid>
+    <RootNamespace>EngineCore</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -143,32 +143,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="ActorComponent.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="EngineDebug.cpp" />
-    <ClCompile Include="EngineDirectory.cpp" />
-    <ClCompile Include="EngineFile.cpp" />
-    <ClCompile Include="EngineMath.cpp" />
-    <ClCompile Include="EnginePath.cpp" />
-    <ClCompile Include="EngineRandom.cpp" />
-    <ClCompile Include="EngineSerializer.cpp" />
-    <ClCompile Include="EngineString.cpp" />
-    <ClCompile Include="EngineTime.cpp" />
-    <ClCompile Include="NameObject.cpp" />
-    <ClCompile Include="PathObject.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="EngineResourcesManager.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="SceneComponent.cpp" />
+    <ClCompile Include="TickObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorComponent.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="EngineCore.h" />
     <ClInclude Include="EngineDebug.h" />
-    <ClInclude Include="EngineDirectory.h" />
-    <ClInclude Include="EngineFile.h" />
-    <ClInclude Include="EngineMath.h" />
-    <ClInclude Include="EnginePath.h" />
-    <ClInclude Include="EngineRandom.h" />
-    <ClInclude Include="EngineSerializer.h" />
-    <ClInclude Include="EngineString.h" />
-    <ClInclude Include="EngineTime.h" />
-    <ClInclude Include="NameObject.h" />
-    <ClInclude Include="PathObject.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="EngineResourcesManager.h" />
+    <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="SceneComponent.h" />
+    <ClInclude Include="TickObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">
+      <Project>{4daa5067-49cf-4752-bed6-b4ad194b0d19}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\EngineWindow\EngineWindow.vcxproj">
+      <Project>{73ccc049-332e-4d86-8f7e-6fe3ef6248cd}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
