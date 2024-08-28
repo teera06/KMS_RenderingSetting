@@ -3,8 +3,8 @@
 #include <EngineBase\EngineString.h>
 #include <EngineBase\EngineTime.h>
 
-#include <EnginePlatform\EngineWindow.h>
-#include <EnginePlatform\EngineInput.h>
+#include <EngineWindow\EngineWindow.h>
+#include <EngineWindow\EngineInput.h>
 #include <map>
 #include <vector>
 
