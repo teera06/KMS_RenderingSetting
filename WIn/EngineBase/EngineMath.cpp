@@ -1,5 +1,7 @@
 #include "EngineMath.h"
 
+
+
 const float UEngineMath::PI = 3.14159265358979323846264338327950288419716939937510f;
 const float UEngineMath::PI2 = UEngineMath::PI * 2.0f;
 const float UEngineMath::DToR = UEngineMath::PI / 180.0f;
@@ -44,12 +46,18 @@ UEngineMath::~UEngineMath()
 
 float4 float4::operator*(const float4x4& _Other) const
 {
-	float4 Result;
+	/*float4 Result;
 	Result.X = (Arr2D[0][0] * _Other.Arr2D[0][0]) + (Arr2D[0][1] * _Other.Arr2D[1][0]) + (Arr2D[0][2] * _Other.Arr2D[2][0]) + (Arr2D[0][3] * _Other.Arr2D[3][0]);
 	Result.Y = (Arr2D[0][0] * _Other.Arr2D[0][1]) + (Arr2D[0][1] * _Other.Arr2D[1][1]) + (Arr2D[0][2] * _Other.Arr2D[2][1]) + (Arr2D[0][3] * _Other.Arr2D[3][1]);
 	Result.Z = (Arr2D[0][0] * _Other.Arr2D[0][2]) + (Arr2D[0][1] * _Other.Arr2D[1][2]) + (Arr2D[0][2] * _Other.Arr2D[2][2]) + (Arr2D[0][3] * _Other.Arr2D[3][2]);
 	Result.W = (Arr2D[0][0] * _Other.Arr2D[0][3]) + (Arr2D[0][1] * _Other.Arr2D[1][3]) + (Arr2D[0][2] * _Other.Arr2D[2][3]) + (Arr2D[0][3] * _Other.Arr2D[3][3]);
+	return Result;*/
+
+	float4 Result;
+	Result.DirectVector = DirectX::XMVector4Transform(DirectVector, _Other.DirectMatrix);
 	return Result;
+
+
 }
 
 float4& float4::operator*=(const class float4x4& _Other) 
@@ -63,7 +71,7 @@ float4& float4::operator*=(const class float4x4& _Other)
 	return *this;
 }
 
-float4x4 operator *(const float4x4& _Left, const float4x4& _Right)
+float4x4 float4::operator *(const float4x4& _Left, const float4x4& _Right)
 {
 	float4x4 Result;
 	const float4x4& A = _Left;
