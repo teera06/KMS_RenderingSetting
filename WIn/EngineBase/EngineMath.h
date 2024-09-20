@@ -3,8 +3,6 @@
 #include <cmath>
 #include <Windows.h>
 
-#include <DirectXPackedVector.h> // 다이렉트벡터 헤더
-#include <DirectXCollision.h> 
 
 // 설명 :
 class UEngineMath
@@ -68,10 +66,6 @@ public:
 
 		float Arr1D[4];
 		float Arr2D[1][4];
-		// 다이렉트에서 제공하는 수치
-		DirectX::XMFLOAT3 DirectFloat3;
-		DirectX::XMFLOAT4 DirectFloat4;
-		DirectX::XMVECTOR DirectVector;
 	};
 
 	// 생성자를 한번 만들게 되면 리스트 이니셜라이저가 동작하지 않아서
@@ -500,12 +494,6 @@ public:
 			float v32;
 			float v33;
 		};
-
-		// 다이렉트에서 사용하는 함수를 사용하려면 다이렉트에서 제공하는 vector를 사용해야 한다.
-		// 다이렉트 함수는 왜 빠르냐?
-		// 내부에서 SIMD연산을 사용한다.
-		// CPU에서 그래픽카드와 같이 한번에 XYZW를 동시에 연산처리 하는 기술
-		DirectX::XMMATRIX DirectMatrix;
 
 		float4 ArrVector[4];
 		float Arr1D[16] = { };
