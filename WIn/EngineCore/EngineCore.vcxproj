@@ -191,10 +191,13 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h" />
+    <ClInclude Include="EngineRenderTarget.h" />
     <ClInclude Include="EngineResourcesManager.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineTexture.h" />
     <ClInclude Include="ImageRenderer.h">
       <SubType>
       </SubType>
@@ -230,10 +233,13 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp" />
+    <ClCompile Include="EngineRenderTarget.cpp" />
     <ClCompile Include="EngineResourcesManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineTexture.cpp" />
     <ClCompile Include="ImageRenderer.cpp">
       <SubType>
       </SubType>

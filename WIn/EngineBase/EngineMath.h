@@ -2,7 +2,8 @@
 #include <string>
 #include <cmath>
 #include <Windows.h>
-
+#include <DirectXPackedVector.h> // 다이렉트벡터 헤더
+#include <DirectXCollision.h> 
 
 // 설명 :
 class UEngineMath
@@ -66,6 +67,10 @@ public:
 
 		float Arr1D[4];
 		float Arr2D[1][4];
+		// 다이렉트 추가
+		DirectX::XMFLOAT3 DirectFloat3;
+		DirectX::XMFLOAT4 DirectFloat4;
+		DirectX::XMVECTOR DirectVector;
 	};
 
 	// 생성자를 한번 만들게 되면 리스트 이니셜라이저가 동작하지 않아서

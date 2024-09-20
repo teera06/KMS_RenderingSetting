@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include <map>
-
+#include "EngineBase/PathObject.h"
 // Ό³Έν :
 template<typename ResType>
-class UEngineResources
+class UEngineResources : public UPathObject
 {
 public:
 	// constrcuter destructer

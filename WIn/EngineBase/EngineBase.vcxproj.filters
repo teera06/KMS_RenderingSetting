@@ -7,9 +7,6 @@
     <ClInclude Include="EngineString.h">
       <Filter>String</Filter>
     </ClInclude>
-    <ClInclude Include="EngineMath.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -37,6 +34,9 @@
     <ClInclude Include="EngineRandom.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Math\DX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -44,9 +44,6 @@
     </ClCompile>
     <ClCompile Include="EngineString.cpp">
       <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineMath.cpp">
-      <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Math</Filter>
@@ -75,6 +72,9 @@
     <ClCompile Include="EngineRandom.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="EngineMath.cpp">
+      <Filter>Math\DX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -94,6 +94,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{40dd519c-dfec-4e66-90e0-bf938d9a56ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\DX">
+      <UniqueIdentifier>{01725a41-901c-45ba-995f-b129f3025872}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,15 @@
     <ClInclude Include="EngineDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h">
+      <Filter>DXDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTexture.h">
+      <Filter>Resources\DXTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h">
+      <Filter>Resources\DXTexture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -63,6 +72,15 @@
     <ClCompile Include="EngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp">
+      <Filter>DXDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTexture.cpp">
+      <Filter>Resources\DXTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp">
+      <Filter>Resources\DXTexture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -88,6 +106,12 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{1daca306-475a-4a7b-a108-30681a09be54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\DXTexture">
+      <UniqueIdentifier>{e4d78f36-8478-4132-859e-8bf957267f40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXDevice">
+      <UniqueIdentifier>{e1a25fe3-874c-4b68-9626-98fee72043c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
