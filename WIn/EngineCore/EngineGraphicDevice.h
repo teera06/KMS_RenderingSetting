@@ -1,6 +1,7 @@
 #pragma once
 
 
+//class UEngineRenderTarget;
 
 class UEngineGraphicDevice
 {
@@ -22,7 +23,6 @@ public:
 
 
 private:
-
 	// Device->LoadTexture() -> 메모리 (그림, 이미지, 점 등등) 관리
 	struct ID3D11Device* Device = nullptr;
 

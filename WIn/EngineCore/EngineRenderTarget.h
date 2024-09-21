@@ -27,13 +27,16 @@ public:
 	static std::shared_ptr<UEngineRenderTarget> Create(std::shared_ptr<UEngineTexture> _Texture, const float4& _Color)
 	{
 		std::shared_ptr<UEngineRenderTarget> NewRes = CreateResUnName();
-		
+		NewRes->AddNewTexture(_Texture, _Color);
+		return NewRes;
 	}
+
 private:
 	// 텍스처 여러개를 엮어서 사용할 수 있게 할거다.
 	std::vector<std::shared_ptr<UEngineTexture>> Textures;
 
 	std::vector<struct ID3D11RenderTargetView*> RTVS;
+	std::vector<float4> ClearColors;
 
 
 	void AddNewTexture(std::shared_ptr<UEngineTexture> _Texture, const float4& _Color);
