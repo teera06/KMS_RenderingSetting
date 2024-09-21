@@ -31,9 +31,6 @@
     <ClInclude Include="EngineDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="EngineGraphicDevice.h">
-      <Filter>DXDevice</Filter>
-    </ClInclude>
     <ClInclude Include="EngineTexture.h">
       <Filter>Resources\DXTexture</Filter>
     </ClInclude>
@@ -42,6 +39,9 @@
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\inc\DirectXTex.h">
       <Filter>ThirdParty\DirectXTex\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h">
+      <Filter>DXDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -75,14 +75,14 @@
     <ClCompile Include="EngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="EngineGraphicDevice.cpp">
-      <Filter>DXDevice</Filter>
-    </ClCompile>
     <ClCompile Include="EngineTexture.cpp">
       <Filter>Resources\DXTexture</Filter>
     </ClCompile>
     <ClCompile Include="EngineRenderTarget.cpp">
       <Filter>Resources\DXTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp">
+      <Filter>DXDevice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,11 +136,6 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex.lib">
-      <Filter>ThirdParty\DirectXTex\Release</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.pdb">
       <Filter>ThirdParty\DirectXTex\Debug</Filter>
     </CopyFileToFolders>
@@ -150,5 +145,6 @@
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex.pdb">
       <Filter>ThirdParty\DirectXTex\Release</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex.lib" />
   </ItemGroup>
 </Project>

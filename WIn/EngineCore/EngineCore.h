@@ -8,6 +8,8 @@
 #include <map>
 #include <vector>
 
+#include "EngineGraphicDevice.h"
+
 
 class ULevel;
 // Ό³Έν :
@@ -34,6 +36,16 @@ public:
 	virtual void BeginPlay();
 	virtual void Tick(float _DeltaTime);
 	virtual void End();
+
+	struct ID3D11Device* GetDirectXDevice()
+	{
+		return EngineDevice.GetDevice();
+	}
+
+	struct ID3D11DeviceContext* GetDirectXContext()
+	{
+		return EngineDevice.GetContext();
+	}
 
 	template<typename LevelType>
 	void CreateLevel(std::string_view _Name)
@@ -74,6 +86,9 @@ protected:
 	UEngineCore();
 
 private:
+
+	UEngineGraphicDevice EngineDevice;
+
 	static bool IsDebugValue;
 
 	int Frame = -1;

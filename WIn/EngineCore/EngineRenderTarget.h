@@ -31,9 +31,13 @@ public:
 		return NewRes;
 	}
 
+	void Clear();
+
 private:
 	// 텍스처 여러개를 엮어서 사용할 수 있게 할거다.
 	std::vector<std::shared_ptr<UEngineTexture>> Textures;
+
+	std::shared_ptr<UEngineTexture> DepthTexture = nullptr;
 
 	std::vector<struct ID3D11RenderTargetView*> RTVS;
 	std::vector<float4> ClearColors;
