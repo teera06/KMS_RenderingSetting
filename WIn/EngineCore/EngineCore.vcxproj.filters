@@ -40,6 +40,9 @@
     <ClInclude Include="EngineRenderTarget.h">
       <Filter>Resources\DXTexture</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\DirectxTex\inc\DirectXTex.h">
+      <Filter>ThirdParty\DirectXTex\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -113,8 +116,39 @@
     <Filter Include="DXDevice">
       <UniqueIdentifier>{e1a25fe3-874c-4b68-9626-98fee72043c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{ef643f98-d1e6-4c74-93b9-9e201b362900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex">
+      <UniqueIdentifier>{3af51fc6-39d5-4127-b58a-2d4cc007f76b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Debug">
+      <UniqueIdentifier>{cb16e85c-e3ef-4a05-a44b-31c38a6266bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Inc">
+      <UniqueIdentifier>{e6648f04-2a34-487b-9e98-da8fe33c1f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Release">
+      <UniqueIdentifier>{f29f00d1-be97-467b-b1f3-e24f202042f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex.lib">
+      <Filter>ThirdParty\DirectXTex\Release</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.pdb">
+      <Filter>ThirdParty\DirectXTex\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\DirectXTex\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex.pdb">
+      <Filter>ThirdParty\DirectXTex\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
