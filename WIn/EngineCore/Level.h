@@ -8,10 +8,11 @@ class AActor;
 class UCollision;
 class UEngineCore;
 class UImageRenderer;
+class UEngineRenderTarget;
 // 설명 : U는 그냥 엔진 속해있다는 것을 의미.
 class ULevel : public UNameObject
 {
-
+	friend UEngineRenderTarget;
 	friend UEngineCore;
 	friend UImageRenderer;
 	friend UCollision;
@@ -113,6 +114,7 @@ public:
 protected:
 
 private:
+	//std::shared_ptr<UEngineRenderTarget> LastTarget = nullptr;
 
 	std::map<int, std::list<AActor*>> AllActor;
 	std::map<int, std::list<UImageRenderer*>> Renderers;

@@ -14,6 +14,21 @@ public:
 	UEngineTexture& operator=(const UEngineTexture& _Other) = delete;
 	UEngineTexture& operator=(UEngineTexture&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UEngineTexture> Create(ID3D11Texture2D* _Texture)
+	{
+		std::shared_ptr<UEngineTexture> NewRes = CreateResUnName();
+		NewRes->ResCreate(_Texture);
+		return NewRes;
+	}
+
+	static std::shared_ptr<UEngineTexture> Create(const D3D11_TEXTURE2D_DESC& _Desc)
+	{
+		std::shared_ptr<UEngineTexture> NewRes = CreateResUnName();
+		NewRes->ResCreate(_Desc);
+		return NewRes;
+	}
+
+
 	ID3D11RenderTargetView* GetRTV()
 	{
 		return RTV;
@@ -48,5 +63,12 @@ private:
 	DirectX::TexMetadata Data;
 	DirectX::ScratchImage Image;
 
+	void ResCreate(const D3D11_TEXTURE2D_DESC& _Desc);
+
+	void ResCreate(ID3D11Texture2D* _Texture);
+
+	void CreateRenderTargetView();
+	void CreateShaderResourceVIew();
+	void CreateDepthStencilView();
 };
 

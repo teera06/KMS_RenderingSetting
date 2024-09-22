@@ -66,6 +66,9 @@ void UEngineCore::CoreTick()
 	UEngineSound::Update();
 	UEngineInput::KeyCheckTick(DeltaTime);
 
+	EngineDevice.RenderStart();
+	EngineDevice.RenderEnd();
+
 	for (size_t i = 0; i < DestroyLevelName.size(); i++)
 	{
 		std::string UpperName = UEngineString::ToUpper(DestroyLevelName[i]);

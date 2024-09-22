@@ -3,9 +3,11 @@
 #include <EngineBase\EngineDebug.h>
 #include "EngineDebug.h"
 #include "EngineCore.h"
+#include "EngineRenderTarget.h"
 
 ULevel::ULevel()
 {
+	
 }
 
 ULevel::~ULevel()
