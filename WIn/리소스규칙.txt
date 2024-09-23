@@ -1,9 +1,0 @@
-1. 같은 이름의 파일명을 사용할수 없다.
-// 보통은 폴더로 처리하는데.
-
-2. 경로 찾는 기술이 필요하다.
-// 로드는 C:\GM\WIn\ContentsResources\Texture\CherryBomb_0.png
-// 윈도우에게 load를 부탁할때는 무조건 FullPath를 사용해서 처리해야 합니다.
-
-
-// 풀경로를 넣어줘야 한다.
