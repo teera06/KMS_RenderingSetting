@@ -117,15 +117,6 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="EngineGraphicDevice.cpp">
-      <Filter>Device</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTexture.cpp">
-      <Filter>Resources\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineRenderTarget.cpp">
-      <Filter>Resources\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -138,9 +129,6 @@
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="TickObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -150,38 +138,8 @@
     <ClCompile Include="WorldObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Object\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Object\EngineContent</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineGraphicDevice_Resources.cpp">
-      <Filter>Device</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineShader.cpp">
-      <Filter>Resources\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineVertexShader.cpp">
-      <Filter>Resources\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="EnginePixelShader.cpp">
-      <Filter>Resources\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectXHelper.cpp">
-      <Filter>Device</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineConstantBuffer.cpp">
-      <Filter>Resources\ShaderResources</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineShaderResources.cpp">
-      <Filter>Resources\ShaderResources</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineSampler.cpp">
-      <Filter>Resources\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineSprite.cpp">
-      <Filter>Resources\Texture</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>Contents</Filter>
@@ -222,29 +180,17 @@
     <ClCompile Include="EngineDebug3D.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Object\Component\Rendering\Contents</Filter>
-    </ClCompile>
     <ClCompile Include="TileRenderer.cpp">
       <Filter>Object\Component\Rendering\Contents</Filter>
     </ClCompile>
     <ClCompile Include="EngineStruct.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="RenderUnit.cpp">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Object\UI\Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="BlurEffect.cpp">
-      <Filter>Object\Rendering\Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineStructuredBuffer.cpp">
-      <Filter>Resources\ShaderResources</Filter>
     </ClCompile>
     <ClCompile Include="InstancingRender.cpp">
       <Filter>Object\Component\Rendering</Filter>
@@ -272,15 +218,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="EngineGraphicDevice.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineTexture.h">
-      <Filter>Resources\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineRenderTarget.h">
-      <Filter>Resources\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -293,9 +230,6 @@
     <ClInclude Include="SceneComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="TickObject.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -305,41 +239,14 @@
     <ClInclude Include="WorldObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Object\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Object\EngineContent</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineShader.h">
-      <Filter>Resources\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineVertexShader.h">
-      <Filter>Resources\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="EnginePixelShader.h">
-      <Filter>Resources\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectXHelper.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineConstantBuffer.h">
-      <Filter>Resources\ShaderResources</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineShaderResources.h">
-      <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
     <ClInclude Include="EngineEnums.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="EngineSampler.h">
-      <Filter>Resources\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\inc\DirectXTex.h">
       <Filter>ThirdParty\DirectXTex\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineSprite.h">
-      <Filter>Resources\Texture</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Contents</Filter>
@@ -386,29 +293,17 @@
     <ClInclude Include="EngineDebug3D.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>Object\Component\Rendering\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="TileRenderer.h">
       <Filter>Object\Component\Rendering\Contents</Filter>
     </ClInclude>
     <ClInclude Include="EngineStruct.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="RenderUnit.h">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Widget.h">
       <Filter>Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Object\UI\Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="BlurEffect.h">
-      <Filter>Object\Rendering\Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineStructuredBuffer.h">
-      <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
     <ClInclude Include="InstancingRender.h">
       <Filter>Object\Component\Rendering</Filter>
