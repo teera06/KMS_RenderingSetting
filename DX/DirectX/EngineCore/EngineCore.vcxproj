@@ -188,14 +188,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineDefines.h" />
-    <ClInclude Include="EngineBlend.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="EngineBuffer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="EngineConstantBuffer.h">
       <SubType>
       </SubType>
@@ -208,7 +200,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineDepthStencil.h" />
     <ClInclude Include="EngineEditorGUI.h">
       <SubType>
       </SubType>
@@ -226,22 +217,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineIndexBuffer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="EngineInputLayOut.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="EngineMaterial.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="EngineMesh.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="EngineNetWindow.h">
       <SubType>
       </SubType>
@@ -251,10 +226,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EnginePixelShader.h" />
-    <ClInclude Include="EngineRasterizer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="EngineRenderTarget.h">
       <SubType>
       </SubType>
@@ -280,7 +251,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -339,10 +309,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineVertexBuffer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="EngineShader.h">
       <SubType>
       </SubType>
@@ -398,14 +364,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineBlend.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineBuffer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="EngineConstantBuffer.cpp">
       <SubType>
       </SubType>
@@ -418,7 +376,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineDepthStencil.cpp" />
     <ClCompile Include="EngineEditorGUI.cpp">
       <SubType>
       </SubType>
@@ -436,22 +393,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice_Resources.cpp" />
-    <ClCompile Include="EngineIndexBuffer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineInputLayOut.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineMaterial.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineMesh.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="EngineNetWindow.cpp">
       <SubType>
       </SubType>
@@ -461,10 +402,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EnginePixelShader.cpp" />
-    <ClCompile Include="EngineRasterizer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="EngineRenderTarget.cpp">
       <SubType>
       </SubType>
@@ -490,7 +427,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineVertex.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>
@@ -547,10 +483,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TickObject.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineVertexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>

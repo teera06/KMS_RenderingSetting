@@ -17,41 +17,4 @@
       <UniqueIdentifier>{adbc2146-e38a-474e-8965-1b8231d60a1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ImageShader.fx">
-      <Filter>2D</Filter>
-    </FxCompile>
-    <FxCompile Include="ColorShader.fx">
-      <Filter>2D</Filter>
-    </FxCompile>
-    <FxCompile Include="DebugShader.fx">
-      <Filter>Debug</Filter>
-    </FxCompile>
-    <FxCompile Include="TargetCopyShader.fx">
-      <Filter>Target</Filter>
-    </FxCompile>
-    <FxCompile Include="BlurEffectShader.fx">
-      <Filter>Effect</Filter>
-    </FxCompile>
-    <FxCompile Include="ImageShaderInstanced.fx">
-      <Filter>2D</Filter>
-    </FxCompile>
-    <FxCompile Include="WidgetImageShader.fx">
-      <Filter>2D</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TransformData.hlsli">
-      <Filter>Header</Filter>
-    </None>
-    <None Include="EngineVertex.hlsli">
-      <Filter>Header</Filter>
-    </None>
-    <None Include="EngineShaderBase.hlsli">
-      <Filter>Header</Filter>
-    </None>
-    <None Include="EngineTexture.hlsli">
-      <Filter>Header</Filter>
-    </None>
-  </ItemGroup>
 </Project>
