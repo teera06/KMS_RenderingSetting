@@ -922,7 +922,7 @@ public:
 
 		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(_FovAngle, _Width / _Height, _Near, _Far);
 
-		DirectX::XMVector3TransformCoord
+		//DirectX::XMVector3TransformCoord
 
 		// DirectX::XMVector3TransformNormal
 
