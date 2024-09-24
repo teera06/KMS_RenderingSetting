@@ -207,6 +207,12 @@
     <ClCompile Include="EngineNetWindow.cpp">
       <Filter>Editor\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTexture.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -322,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="EngineNetWindow.h">
       <Filter>Editor\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTexture.h">
+      <Filter>Resources\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

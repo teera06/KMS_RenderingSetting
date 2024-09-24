@@ -201,6 +201,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h" />
     <ClInclude Include="EngineNetWindow.h">
       <SubType>
       </SubType>
@@ -210,6 +211,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineStruct.h" />
+    <ClInclude Include="EngineTexture.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -311,6 +313,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp" />
     <ClCompile Include="EngineNetWindow.cpp">
       <SubType>
       </SubType>
@@ -320,6 +323,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineStruct.cpp" />
+    <ClCompile Include="EngineTexture.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>
