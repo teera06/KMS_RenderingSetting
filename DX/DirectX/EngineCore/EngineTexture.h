@@ -1,8 +1,10 @@
 #pragma once
 
+#include <EnginePlatform/EngineResources.h>
+
 #include "ThirdParty\DirectxTex\inc\\DirectXTex.h"
 
-class UEngineTexture
+class UEngineTexture : UEngineResources<UEngineTexture>
 {
 public:
 	
@@ -16,6 +18,14 @@ public:
 	UEngineTexture& operator=(const UEngineTexture& _Other) = delete;
 	UEngineTexture& operator=(UEngineTexture&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UEngineTexture> Create(ID3D11Texture2D* _Texture)
+	{
+		std::shared_ptr<UEngineTexture> NewRes = CreateResUnName();
+		
+	}
+
+
+
 private:
 
 	// 이미지 그 자체
@@ -25,7 +35,7 @@ private:
 	ID3D11Texture2D* Texture2D = nullptr;
 
 	// DirectX에서는 이미지(메모리) 수정 권한 (여기에 그릴 수 있는 권한)
-	ID3D10RenderTargetView* RTV = nullptr;
+	ID3D11RenderTargetView* RTV = nullptr;
 
 	// directx에서 이미지를 쉐이더에 세팅할 수 있는 권한
 	ID3D11ShaderResourceView* SRV = nullptr;
@@ -34,6 +44,14 @@ private:
 
 	D3D11_TEXTURE2D_DESC Desc;
 
+	DirectX::TexMetadata Data;
+	DirectX::ScratchImage Image;
+
+	void ResCreate(const D3D11_TEXTURE2D_DESC& _Desc);
+
+	void ResCreate(ID3D11Texture2D* _Texture);
 	
+	void CreateRenderTargetView();
+	void CreateShaderResourceView();
 };
 
