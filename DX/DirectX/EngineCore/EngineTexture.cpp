@@ -10,6 +10,21 @@ UEngineTexture::UEngineTexture()
 
 UEngineTexture::~UEngineTexture()
 {
+	if (nullptr != SRV)
+	{
+		SRV->Release();
+	}
+
+	if (nullptr != RTV)
+	{
+		RTV->Release();
+	}
+
+	if (nullptr != DSV)
+	{
+		DSV->Release();
+	}
+
 }
 
 void UEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc)
@@ -24,17 +39,20 @@ void UEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc)
 	}
 	if (Desc.BindFlags & D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE)
 	{
-
+		CreateShaderResourceView();
 	}
 	if (Desc.BindFlags & D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL)
 	{
-
+		CreateDepthStencilView();
 	}
 }
 
 void UEngineTexture::ResCreate(ID3D11Texture2D* _Texture)
 {
+	Texture2D = _Texture;
+	Texture2D->GetDesc(&Desc);
 
+	CreateRenderTargetView();
 
 }
 
@@ -85,6 +103,28 @@ void UEngineTexture::CreateShaderResourceView()
 	if (S_OK != Result)
 	{
 		MsgBoxAssert("쉐이더 리소스 뷰 생성에 실패");
+		return;
+	}
+}
+
+void UEngineTexture::CreateDepthStencilView()
+{
+	if (nullptr != DSV)
+	{
+		return;
+	}
+
+	if (nullptr == Texture2D)
+	{
+		MsgBoxAssert("만들어지지 않은 텍스처로 DSV를 생성하려고 했다.");
+		return;
+	}
+
+	HRESULT Result = GEngine->GetDirectXDevice()->CreateDepthStencilView(Texture2D, nullptr, &DSV);
+
+	if(S_OK != Result)
+	{ 
+		MsgBoxAssert("DSV 생성에 실패");
 		return;
 	}
 }

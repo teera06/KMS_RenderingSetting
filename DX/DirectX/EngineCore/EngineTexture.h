@@ -24,6 +24,20 @@ public:
 		
 	}
 
+	ID3D11RenderTargetView* GetRTV()
+	{
+		return RTV;
+	}
+
+	ID3D11ShaderResourceView* GetSRV()
+	{
+		return SRV;
+	}
+
+	ID3D11DepthStencilView* GetDSV()
+	{
+		return DSV;
+	}
 
 
 private:
@@ -53,5 +67,6 @@ private:
 	
 	void CreateRenderTargetView();
 	void CreateShaderResourceView();
+	void CreateDepthStencilView();
 };
 

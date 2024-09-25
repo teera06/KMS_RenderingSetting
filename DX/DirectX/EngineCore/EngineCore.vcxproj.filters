@@ -213,6 +213,9 @@
     <ClCompile Include="EngineTexture.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -333,6 +336,9 @@
       <Filter>Device</Filter>
     </ClInclude>
     <ClInclude Include="EngineTexture.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
   </ItemGroup>

@@ -210,6 +210,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h" />
     <ClInclude Include="EngineStruct.h" />
     <ClInclude Include="EngineTexture.h" />
     <ClInclude Include="GameMode.h">
@@ -322,6 +323,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp" />
     <ClCompile Include="EngineStruct.cpp" />
     <ClCompile Include="EngineTexture.cpp" />
     <ClCompile Include="GameMode.cpp">
