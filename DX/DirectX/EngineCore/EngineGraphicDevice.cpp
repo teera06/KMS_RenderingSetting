@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineGraphicDevice.h"
 #include "EngineRenderTarget.h"
+#include "EngineTexture.h"
 
 UEngineGraphicDevice::UEngineGraphicDevice()
 {
@@ -178,5 +179,72 @@ void UEngineGraphicDevice::CreateSwapChain(const float4& _ClearColor)
 	// 랜더링에서 기존에 있던 그림을 깨끗히 지우고 다시 그리는 건 어느 랜더링이 거의 공통적인 요소
 	
 
-	//float4 Resolution = 
+	// 해상도
+	float4 Resolution = windowPtr->GetWindowScale();
+
+	// 스왑체인을 만들기 위한 구조체 만들고 설정
+	DXGI_SWAP_CHAIN_DESC ScInfo = { 0 };
+
+	ScInfo.BufferCount = 2;
+	ScInfo.BufferDesc.Width = Resolution.iX();
+	ScInfo.BufferDesc.Height = Resolution.iY();
+	ScInfo.OutputWindow = windowPtr->GetHWND();
+
+	// 주사율 모니터에 얼마나 빠르게 갱신할거냐
+	ScInfo.BufferDesc.RefreshRate.Denominator = 1;
+	ScInfo.BufferDesc.RefreshRate.Numerator = 60;
+
+	// 색깔 포멧
+	ScInfo.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	// 모니터 픽셀을 갱신하는 순서 모니터 그대로
+
+	ScInfo.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+
+	ScInfo.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+
+	// 스왑체인 용도
+	// 
+	ScInfo.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;
+
+
+	// 샘플링
+	ScInfo.SampleDesc.Quality = 0;
+	ScInfo.SampleDesc.Count = 1;
+
+	// DXGI_SWAP_EFFECT_FLIP_DISCARD 2개를 교대로 보여줘라.
+	// 이거때문에 화면이 깜빡임
+	ScInfo.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+
+	ScInfo.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	ScInfo.Windowed = true;
+
+	// 스왑체인을 만들게되면
+	// DC를 만들면 내부에 화면 크기만한 텍스처를 만들어 준다.
+
+	IDXGIFactory* pF = nullptr;
+
+	Adapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pF));
+
+	pF->CreateSwapChain(Device, &ScInfo, &SwapChain);
+
+	Adapter->Release();
+	pF->Release();
+
+	// 내가 설정한 화면크기만한 directx용 image가 들어 있다.
+	// 
+
+	ID3D11Texture2D* DXBackBufferTexture = nullptr;
+
+	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&DXBackBufferTexture)))
+	{
+		MsgBoxAssert("백버퍼 텍스처를 얻어오지 못했습니다.");
+		return;
+	}
+
+	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Create(DXBackBufferTexture);
+
+
+	//BackBufferRenderTarget = UEngineTexture::Create(Texture, _ClearColor);
 }
