@@ -2,6 +2,7 @@
 
 #include "EngineBuffer.h"
 
+class UVertexLayOutInfo;
 
 class UEngineVertexBuffer:public UEngineResources<UEngineVertexBuffer>, public UEngineBuffer
 {
@@ -21,11 +22,14 @@ public:
 	{
 		std::shared_ptr<UEngineVertexBuffer> Res = CreateResName(_Name);
 		Res->ResCreate(&_Data[0], static_cast<UINT>(sizeof(VertextType)), static_cast<UINT>(_Data.size()));
-		
-		
+		Res->LayOutInfoPtr = &VertextType::Info;
+		return Res;
 	}
+
+
 private:
-	
+	UVertexLayOutInfo* LayOutInfoPtr=nullptr;
+
 	UINT Size = 0;
 	UINT Count = 0;
 	UINT Offset = 0;

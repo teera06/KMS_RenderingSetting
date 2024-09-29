@@ -1,6 +1,7 @@
 #pragma once
 
 class UEngineVertexBuffer;
+class UEngineIndexBuffer;
 
 class UEngineMesh : public UEngineResources<UEngineMesh> 
 {
@@ -16,7 +17,25 @@ public:
 	UEngineMesh& operator=(const UEngineMesh& _Other) = delete;
 	UEngineMesh& operator=(UEngineMesh&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UEngineMesh> Create(std::string_view _Name)
+	{
+		return Create(_Name, _Name, _Name);
+	}
+
+	static std::shared_ptr<UEngineMesh> Create(std::string_view _MeshName, std::string_view _VertexName, std::string_view _IndexName)
+	{
+		std::shared_ptr<UEngineMesh> Res = CreateResName(_MeshName);
+		Res->ResCreate(_VertexName, _IndexName);
+		return Res;
+	}
+
+protected:
+	void ResCreate(std::string_view _VertexName, std::string_view _IndexName);
 private:
-	std::shared_ptr<UEngineVertexBuffer> VertexBuffer = nullptr;
+	// 버텍스 버퍼
+	std::shared_ptr<UEngineVertexBuffer> VertexBuffer = nullptr; 
+
+	// 인덱스 버퍼
+	std::shared_ptr<UEngineIndexBuffer> IndexBuffer = nullptr;
 };
 
