@@ -18,6 +18,20 @@ public:
 	UEngineRenderTarget& operator=(const UEngineRenderTarget& _Other) = delete;
 	UEngineRenderTarget& operator=(UEngineRenderTarget&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UEngineRenderTarget> Create(std::shared_ptr<UEngineTexture> _Texture, const float4& _Color)
+	{
+		std::shared_ptr<UEngineRenderTarget> NewRes = CreateResUnName();
+		NewRes->AddNewTexture(_Texture, _Color);
+		return NewRes;
+	}
+
+	static std::shared_ptr<UEngineRenderTarget> Create()
+	{
+		std::shared_ptr<UEngineRenderTarget> NewRes = CreateResUnName();
+		return NewRes;
+	}
+
+
 	void Clear();
 
 private:

@@ -2,6 +2,7 @@
 #include "EngineGraphicDevice.h"
 #include "EngineRenderTarget.h"
 #include "EngineTexture.h"
+#include "EngineRenderTarget.h"
 
 UEngineGraphicDevice::UEngineGraphicDevice()
 {
@@ -9,6 +10,20 @@ UEngineGraphicDevice::UEngineGraphicDevice()
 
 UEngineGraphicDevice::~UEngineGraphicDevice()
 {
+	if (nullptr != SwapChain)
+	{
+		SwapChain->Release();
+	}
+
+	if (nullptr != Context)
+	{
+		Context->Release();
+	}
+
+	if (nullptr != Device)
+	{
+		Device->Release();
+	}
 }
 
 void UEngineGraphicDevice::Initalize(const UEngineWindow& _Window, const float4& _Clearclolor)
@@ -245,6 +260,6 @@ void UEngineGraphicDevice::CreateSwapChain(const float4& _ClearColor)
 
 	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Create(DXBackBufferTexture);
 
-
-	//BackBufferRenderTarget = UEngineTexture::Create(Texture, _ClearColor);
+	// 그릴 수 있는 권한이나 지우는 기능 -> 랜더타켓이라는 걸로 통일
+	BackBufferRenderTarget = UEngineRenderTarget::Create(Texture, _ClearColor);
 }
