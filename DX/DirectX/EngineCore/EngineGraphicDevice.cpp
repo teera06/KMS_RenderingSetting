@@ -264,6 +264,4 @@ void UEngineGraphicDevice::CreateSwapChain(const float4& _ClearColor)
 	BackBufferRenderTarget = UEngineRenderTarget::Create(Texture, _ClearColor);
 }
 
-void UEngineGraphicDevice::EngineResourcesInit()
-{
-}
+

@@ -1,9 +1,13 @@
 #include "PreCompile.h"
 #include "EngineGraphicDevice.h"
+
 #include "EngineVertex.h"
 #include "EngineVertexBuffer.h"
 #include "EngineIndexBuffer.h"
 #include "EngineMesh.h"
+
+#include "EngineShader.h"
+
 
 // 인풋어셈블러 1과 인풋어셈블러 2의 리소스들을 만들어내는 이니셜라이즈
 void MeshInit()
@@ -45,4 +49,17 @@ void MeshInit()
 	{
 
 	}
+}
+
+void UEngineGraphicDevice::EngineResourcesInit()
+{
+	MeshInit();
+	ShaderInit();
+}
+
+void ShaderInit()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("EngineShader");
+	UEngineShader::AutoCompile(Dir);
 }
