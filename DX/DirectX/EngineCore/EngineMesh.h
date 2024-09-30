@@ -5,7 +5,6 @@ class UEngineIndexBuffer;
 
 class UEngineMesh : public UEngineResources<UEngineMesh> 
 {
-
 public:
 	// constrcuter destructer
 	UEngineMesh();
@@ -29,6 +28,10 @@ public:
 		return Res;
 	}
 
+	void IndexDraw();
+
+	// 인스턴싱
+	void DrawIndexedInstanced(int _InstancingCount);
 protected:
 	void ResCreate(std::string_view _VertexName, std::string_view _IndexName);
 private:
@@ -37,5 +40,11 @@ private:
 
 	// 인덱스 버퍼
 	std::shared_ptr<UEngineIndexBuffer> IndexBuffer = nullptr;
+
+	// 버텍스 버퍼 세팅
+	void InputAssmbler1Setting(); 
+
+	// 인덱스 버퍼 세팅
+	void InputAssmbler2Setting();
 };
 

@@ -234,6 +234,9 @@
     <ClCompile Include="DirectXHelper.cpp">
       <Filter>Device</Filter>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice_Resources.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">

@@ -57,5 +57,7 @@ private:
 
 	IDXGIAdapter* GetHighperFormanceAdapter();
 	void CreateSwapChain(const float4& _ClearColor);
+
+	void EngineResourcesInit();
 };
 

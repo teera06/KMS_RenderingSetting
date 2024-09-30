@@ -263,3 +263,7 @@ void UEngineGraphicDevice::CreateSwapChain(const float4& _ClearColor)
 	// 그릴 수 있는 권한이나 지우는 기능 -> 랜더타켓이라는 걸로 통일
 	BackBufferRenderTarget = UEngineRenderTarget::Create(Texture, _ClearColor);
 }
+
+void UEngineGraphicDevice::EngineResourcesInit()
+{
+}

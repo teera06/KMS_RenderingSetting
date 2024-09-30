@@ -6,6 +6,7 @@ class UVertexLayOutInfo;
 
 class UEngineVertexBuffer:public UEngineResources<UEngineVertexBuffer>, public UEngineBuffer
 {
+	friend UEngineMesh;
 public:
 	// constrcuter destructer
 	UEngineVertexBuffer();

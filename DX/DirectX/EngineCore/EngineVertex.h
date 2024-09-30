@@ -46,6 +46,8 @@ public:
 struct FEngineVertex
 {
 public:
+	static UVertexLayOutInfo Info;
+
 	float4 POSITION;
 	float4 TEXCOORD;
 };
