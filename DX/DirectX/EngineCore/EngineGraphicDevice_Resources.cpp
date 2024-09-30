@@ -2,7 +2,8 @@
 #include "EngineGraphicDevice.h"
 #include "EngineVertex.h"
 #include "EngineVertexBuffer.h"
-#include ""
+#include "EngineIndexBuffer.h"
+#include "EngineMesh.h"
 
 // 인풋어셈블러 1과 인풋어셈블러 2의 리소스들을 만들어내는 이니셜라이즈
 void MeshInit()
@@ -25,6 +26,23 @@ void MeshInit()
 		// 삼각형을 어떻게 그릴지에 대한 순서
 		std::vector<UINT> IndexData = { 0,1,2,0,2,3 };
 
-		//std::shared_ptr<>
+		std::shared_ptr<UEngineIndexBuffer> IndexBuffer = UEngineIndexBuffer::Create("Rect", IndexData);
+
+		UEngineMesh::Create("Rect"); // 메시 종류
+
+		{
+			VertexData[0] = { {-1.0f, 1.0f, 0.0f, 1.0f} , {0.0f, 0.0f} };
+			VertexData[1] = { {1.0f, 1.0f, 0.0f, 1.0f} , {1.0f, 0.0f} };
+			VertexData[2] = { {1.0f, -1.0f, 0.0f, 1.0f}, {1.0f, 1.0f} };
+			VertexData[3] = { {-1.0f, -1.0f, 0.0f, 1.0f}, {0.0f, 1.0f} };
+
+			std::shared_ptr<UEngineVertexBuffer> VertexBuffer = UEngineVertexBuffer::Create("FullRect", VertexData);
+		}
+
+		UEngineMesh::Create("FullRect", "FullRect","Rect"); // 메시 종류
+	}
+
+	{
+
 	}
 }
