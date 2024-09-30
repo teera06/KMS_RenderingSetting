@@ -205,6 +205,7 @@
     </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h" />
     <ClInclude Include="EngineIndexBuffer.h" />
+    <ClInclude Include="EngineMaterial.h" />
     <ClInclude Include="EngineMesh.h" />
     <ClInclude Include="EngineNetWindow.h">
       <SubType>
@@ -328,6 +329,7 @@
     <ClCompile Include="EngineGraphicDevice.cpp" />
     <ClCompile Include="EngineGraphicDevice_Resources.cpp" />
     <ClCompile Include="EngineIndexBuffer.cpp" />
+    <ClCompile Include="EngineMaterial.cpp" />
     <ClCompile Include="EngineMesh.cpp" />
     <ClCompile Include="EngineNetWindow.cpp">
       <SubType>

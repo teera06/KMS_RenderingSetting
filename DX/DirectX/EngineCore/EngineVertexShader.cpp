@@ -78,3 +78,15 @@ void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT
 
 
 }
+
+void UEngineVertexShader::Setting()
+{
+#ifdef DEBUG
+	if (nullptr == ShaderPtr)
+	{
+		MsgBoxAssert("만들어지지 않은 버텍스 쉐이더를 세팅하려고 했습니다.");
+	}
+#endif // DEBUG
+
+	GEngine->GetDirectXContext()->VSSetShader(ShaderPtr, nullptr, 0);
+}
