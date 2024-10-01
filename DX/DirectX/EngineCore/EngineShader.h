@@ -1,7 +1,12 @@
 #pragma once
 #include "EngineEnums.h"
+
+class UEngineInputLayOut;
+class UEngineShaderResources;
+
 class UEngineShader
 {
+	friend UEngineInputLayOut;
 public:
 	static void AutoCompile(UEngineDirectory _Dir);
 
@@ -15,7 +20,8 @@ public:
 	UEngineShader& operator=(const UEngineShader& _Other) = delete;
 	UEngineShader& operator=(UEngineShader&& _Other) noexcept = delete;
 
-	
+	std::shared_ptr<UEngineShaderResources> Resource;
+
 protected:
 
 	// 컴파일된 쉐이더 코드의 핸들

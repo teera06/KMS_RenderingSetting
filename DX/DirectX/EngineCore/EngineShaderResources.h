@@ -74,6 +74,7 @@ public:
 	void SettingTexture(std::string_view _TexName, std::shared_ptr<UEngineTexture> _Texture, std::string_view _SamperName);
 
 private:
+	void ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode);
 
 	// 상수 버퍼 
 	std::map<EShaderType, std::map<std::string, UEngineConstantBufferSetter>> ConstantBuffers;

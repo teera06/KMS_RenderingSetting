@@ -104,6 +104,64 @@ void EngineShaderResources::SettingTexture(std::string_view _TexName, std::share
 
 }
 
+void EngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode)
+{
+	// _EntryName -> 무슨 쉐이더에 무슨 리소스가 있는지 확인용
+
+	if (nullptr == _ShaderCode)
+	{
+		MsgBoxAssert("컴파일이 실패한 쉐이더에서 리소스 체크를 하려고 했습니다.");
+		return;
+	}
+
+	ID3DBlob* ShaderCode = _ShaderCode;
+	// 다이렉트X가 자동검색 기능과 함수를 제공
+
+	// Reflection 
+
+	ID3D11ShaderReflection* CompileInfo = nullptr;
+
+	if (S_OK != D3DReflect(ShaderCode->GetBufferPointer(), ShaderCode->GetBufferSize(), IID_ID3D11ShaderReflection, reinterpret_cast<void**>(&CompileInfo)))
+	{
+		MsgBoxAssert("쉐이더 정보수집에 실패");
+		return;
+	}
+
+	D3D11_SHADER_DESC Info = {};
+
+	CompileInfo->GetDesc(&Info);
+
+	for (UINT i = 0; i < Info.BoundResources; i++)
+	{
+		D3D11_SHADER_INPUT_BIND_DESC ResDesc;
+
+		CompileInfo->GetResourceBindingDesc(i, &ResDesc);
+
+		D3D_SHADER_INPUT_TYPE Type = ResDesc.Type;
+
+		std::string UpperName = UEngineString::ToUpper(ResDesc.Name);
+
+		switch (Type)
+		{
+		case D3D_SIT_CBUFFER:
+			// 상수버퍼의 세세한 정보를 알려줘
+			ID3D11ShaderReflectionConstantBuffer* BufferInfo = CompileInfo->GetConstantBufferByName(ResDesc.Name);
+
+			D3D11_SHADER_BUFFER_DESC ConstantBufferDesc = {};
+
+			BufferInfo->GetDesc(&ConstantBufferDesc);
+
+			std::shared_ptr<UEngineConstantBuffer> Buffer = UEngineConstantBuffer::CreateAndFind(_Type, ResDesc.Name, ConstantBufferDesc.Size);
+
+			UEngineConstantBuffer& NewSetter = ConstantBuffers[_Type][UpperName];
+
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void UEngineConstantBufferSetter::Setting()
 {
 	// 상수 버퍼 세팅

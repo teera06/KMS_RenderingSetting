@@ -4,11 +4,14 @@
 #include "EngineMesh.h"
 #include "EngineMaterial.h"
 
+#include "EngineInputLayOut.h"
+
 void URenderUnit::RenderingSetting()
 {
 	// 버텍스 버퍼 세팅
 	Mesh->InputAssmbler1Setting();
-	LayOut->
+	// 인풋 레이아웃
+	LayOut->Setting();
 
 	// 버텍스 쉐이더 
 	Material->VertexShaderSetting();

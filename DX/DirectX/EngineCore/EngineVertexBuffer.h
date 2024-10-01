@@ -3,10 +3,12 @@
 #include "EngineBuffer.h"
 
 class UVertexLayOutInfo;
-
+class UEngineMesh;
+class UEngineInputLayOut;
 class UEngineVertexBuffer:public UEngineResources<UEngineVertexBuffer>, public UEngineBuffer
 {
 	friend UEngineMesh;
+	friend UEngineInputLayOut;
 public:
 	// constrcuter destructer
 	UEngineVertexBuffer();

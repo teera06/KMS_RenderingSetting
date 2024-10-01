@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineShader.h"
 #include "EngineVertexShader.h"
+#include "EngineShaderResources.h"
 
 void UEngineShader::AutoCompile(UEngineDirectory _Dir)
 {
@@ -51,5 +52,5 @@ UEngineShader::~UEngineShader()
 
 void UEngineShader::ShaderResCheck()
 {
-
+	Resource->sh
 }
