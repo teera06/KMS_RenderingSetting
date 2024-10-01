@@ -220,6 +220,7 @@
     <ClInclude Include="EngineShader.h" />
     <ClInclude Include="EngineShaderResources.h" />
     <ClInclude Include="EngineStruct.h" />
+    <ClInclude Include="EngineStructuredBuffer.h" />
     <ClInclude Include="EngineTexture.h" />
     <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="EngineVertexBuffer.h" />
@@ -346,6 +347,7 @@
     <ClCompile Include="EngineShader.cpp" />
     <ClCompile Include="EngineShaderResources.cpp" />
     <ClCompile Include="EngineStruct.cpp" />
+    <ClCompile Include="EngineStructuredBuffer.cpp" />
     <ClCompile Include="EngineTexture.cpp" />
     <ClCompile Include="EngineVertex.cpp" />
     <ClCompile Include="EngineVertexBuffer.cpp" />

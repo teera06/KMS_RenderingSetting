@@ -255,6 +255,9 @@
     <ClCompile Include="EngineConstantBuffer.cpp">
       <Filter>Resources\ShaderResources</Filter>
     </ClCompile>
+    <ClCompile Include="EngineStructuredBuffer.cpp">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -414,6 +417,9 @@
       <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
     <ClInclude Include="EngineConstantBuffer.h">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineStructuredBuffer.h">
       <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
   </ItemGroup>
