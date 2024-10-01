@@ -1,6 +1,8 @@
 #pragma once
 #include "EngineShader.h"
 
+class UEngineMaterial;
+
 class UEngineVertexShader : public UEngineResources<UEngineVertexShader>, public UEngineShader
 {
 	friend UEngineMaterial;

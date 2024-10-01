@@ -51,15 +51,23 @@ void MeshInit()
 	}
 }
 
-void UEngineGraphicDevice::EngineResourcesInit()
-{
-	MeshInit();
-	ShaderInit();
-}
-
 void ShaderInit()
 {
 	UEngineDirectory Dir;
 	Dir.MoveToSearchChild("EngineShader");
 	UEngineShader::AutoCompile(Dir);
 }
+
+void SettingInit()
+{
+	{
+		
+	}
+}
+
+void UEngineGraphicDevice::EngineResourcesInit()
+{
+	MeshInit();
+	ShaderInit();
+}
+
