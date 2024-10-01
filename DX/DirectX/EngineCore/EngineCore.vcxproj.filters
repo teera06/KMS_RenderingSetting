@@ -258,6 +258,9 @@
     <ClCompile Include="EngineStructuredBuffer.cpp">
       <Filter>Resources\ShaderResources</Filter>
     </ClCompile>
+    <ClCompile Include="EngineSampler.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -413,13 +416,16 @@
     <ClInclude Include="EngineMaterial.h">
       <Filter>Resources\RenderingSetting</Filter>
     </ClInclude>
-    <ClInclude Include="EngineShaderResources.h">
-      <Filter>Resources\ShaderResources</Filter>
-    </ClInclude>
     <ClInclude Include="EngineConstantBuffer.h">
       <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
     <ClInclude Include="EngineStructuredBuffer.h">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSampler.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineShaderResources.h">
       <Filter>Resources\ShaderResources</Filter>
     </ClInclude>
   </ItemGroup>

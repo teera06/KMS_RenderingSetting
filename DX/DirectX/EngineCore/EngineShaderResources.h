@@ -51,7 +51,8 @@ public:
 
 class UEngineSamplerSetter : public  USetterBase
 {
-
+public:
+	std::shared_ptr <class UEngineSampler> Res;
 
 };
 
@@ -72,8 +73,15 @@ private:
 	// 상수 버퍼 
 	std::map<EShaderType, std::map<std::string, UEngineConstantBufferSetter>> ConstantBuffers;
 
+	// textures
+	std::map<EShaderType, std::map<std::string, UEngineTexturSetter>> Textures;
+
+	// 샘플러
+	std::map<EShaderType, std::map<std::string, UEngineSamplerSetter>> Samplers;
+
 	// 구조체 버퍼
 	std::map<EShaderType, std::map<std::string, UEngineStructuredBufferSetter>> StructureBuffers;
+
 
 };
 
