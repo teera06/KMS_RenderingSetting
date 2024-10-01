@@ -8,6 +8,7 @@ void URenderUnit::RenderingSetting()
 {
 	// 버텍스 버퍼 세팅
 	Mesh->InputAssmbler1Setting();
+	LayOut->
 
 	// 버텍스 쉐이더 
 	Material->VertexShaderSetting();

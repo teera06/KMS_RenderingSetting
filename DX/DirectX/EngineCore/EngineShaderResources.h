@@ -68,6 +68,11 @@ public:
 	void SettingConstantBuffer(std::string_view _Name, const void* _Data, UINT _Size);
 
 	bool IsConstantBuffer(std::string_view _Name);
+
+	void SettingTexture(std::string_view _TexName, std::string_view _ImageName, std::string_view _SamperName);
+
+	void SettingTexture(std::string_view _TexName, std::shared_ptr<UEngineTexture> _Texture, std::string_view _SamperName);
+
 private:
 
 	// 상수 버퍼 

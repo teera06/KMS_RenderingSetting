@@ -4,7 +4,7 @@
 
 #include "ThirdParty\DirectxTex\inc\\DirectXTex.h"
 
-class UEngineTexture : UEngineResources<UEngineTexture>
+class UEngineTexture : public UEngineResources<UEngineTexture>
 {
 public:
 	
