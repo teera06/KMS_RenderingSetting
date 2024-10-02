@@ -2,6 +2,8 @@
 #include "EngineMaterial.h"
 #include "EngineVertexShader.h"
 #include "EngineRasterizer.h"
+#include "EnginePixelShader.h"
+
 
 UEngineMaterial::UEngineMaterial()
 {
@@ -59,3 +61,30 @@ void UEngineMaterial::RasterizerSetting()
 
 	Rasterizer->Setting();
 }
+
+void UEngineMaterial::SetPixeShader(std::string_view _Name)
+{
+	PixelShader = UEnginePixelShader::FindRes(_Name);
+
+	if (nullptr == PixelShader)
+	{
+		MsgBoxAssert("존재하지 않는 픽셀 쉐이더를 세팅하려고 했습니다.");
+		return;
+	}
+
+
+}
+
+void UEngineMaterial::PixelShaderSetting()
+{
+#ifdef DEBUG
+	if (nullptr == PixelShader) 
+	{
+		MsgBoxAssert("픽셀 쉐이더를 세팅하지 않고 랜더링 하려고 했습니다.");
+		return;
+	}
+#endif // DEBUG
+
+	PixelShader->Setting();
+}
+

@@ -7,7 +7,7 @@
 // ¸®ÅÏÇÒ ±¸Á¶Ã¼
 struct ImageVSOutPut
 {
-    float4 POSITION : SV_Position;
+    float4 POSITION : SV_POSITION;
     float4 TEXCOORD : TEXCOORD;
 };
 
@@ -53,3 +53,36 @@ ImageVSOutPut ImageShader_VS(FEngineVertex _Input)
 // b0 buffer 0¹ø ½½·Ô
 // t0 texture 0¹ø ½½·Ô
 // s0 Samlper 0¹ø ½½·Ô
+
+struct ImagePSOutPut
+{
+    float4 COLOR : SV_Target0;
+};
+
+TextureSet(Image, 0);
+
+cbuffer ReSultColorValue : register(b10)
+{
+    float4 PlusColor;
+    float4 MulColor;
+    float4 AlphaColor;
+}
+
+ImagePSOutPut ImageShader_PS(ImageVSOutPut _Input)
+{
+    ImagePSOutPut Out = (ImagePSOutPut) 0;
+    
+    
+    Out.COLOR = Sampling(Image, _Input.TEXCOORD);
+
+    if (0>=Out.COLOR.a)
+    {
+        clip(-1);
+    }
+    
+    Out.COLOR.xyz += PlusColor.xyz;
+    Out.COLOR.wyzx *= MulColor.xyz;
+    
+    return Out;
+
+}

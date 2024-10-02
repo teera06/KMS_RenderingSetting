@@ -85,3 +85,16 @@ void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT 
 
 	ShaderResCheck();
 }
+
+void UEnginePixelShader::Setting()
+{
+#ifdef DEBUG
+	if (nullptr == ShaderPtr)
+	{
+		MsgBoxAssert("만들어지지 않은 픽셀 쉐이더를 세팅하려고 했습니다.");
+	}
+#endif // DEBUG
+
+	GEngine->GetDirectXContext()->PSSetShader(ShaderPtr, nullptr, 0);
+
+}

@@ -57,6 +57,7 @@ public:
 
 };
 
+class UEngineShader;
 class UEngineShaderResources 
 {
 	friend UEngineShader;

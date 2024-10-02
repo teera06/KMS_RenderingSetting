@@ -21,4 +21,7 @@ void URenderUnit::RenderingSetting()
 
 	// 레스터라이저 세팅
 	Material->RasterizerSetting();
+
+	// 픽셀 쉐이더 세팅
+	Material->PixelShaderSetting();
 }
