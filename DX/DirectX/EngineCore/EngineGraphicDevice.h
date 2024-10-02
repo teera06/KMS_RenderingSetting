@@ -23,7 +23,7 @@ public:
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& _Other) noexcept = delete;
 
 	// nullptr의 가능성을 없애버리기 위해서 
-	void Initalize(const UEngineWindow& _Window, const float4& _Clearclolor);
+	void Initialize(const UEngineWindow& _Window, const float4& _Clearclolor);
 
 	ID3D11Device* GetDevice()
 	{

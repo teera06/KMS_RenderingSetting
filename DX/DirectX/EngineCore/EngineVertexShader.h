@@ -23,6 +23,12 @@ public:
 		return Res;
 	}
 
+	static std::shared_ptr<UEngineVertexShader> Load(std::string_view _Name, std::string_view _Path, std::string_view _EntryPoint, UINT _Higt = 5, UINT _Low = 0)
+	{
+		std::shared_ptr<UEngineVertexShader> Res = CreateResName(_Path, _Name);
+		Res->ResLoad(_EntryPoint, _Higt, _Low);
+		return Res;
+	}
 
 private:
 	// 실제 셀이할 수 있는 쉐이더 핸들

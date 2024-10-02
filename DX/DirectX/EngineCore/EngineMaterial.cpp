@@ -1,9 +1,12 @@
 #include "PreCompile.h"
 #include "EngineMaterial.h"
 #include "EngineVertexShader.h"
+#include "EngineRasterizer.h"
 
 UEngineMaterial::UEngineMaterial()
 {
+	SetRasterizer("EngineBase");
+
 }
 
 UEngineMaterial::~UEngineMaterial()
@@ -32,4 +35,27 @@ void UEngineMaterial::VertexShaderSetting()
 #endif // DEBUG
 	
 	VertexShader->Setting();
+}
+
+void UEngineMaterial::SetRasterizer(std::string_view _Name)
+{
+	Rasterizer = UEngineRasterizer::FindRes(_Name);
+	if (nullptr == Rasterizer)
+	{
+		MsgBoxAssert("존재하지 않은 레스터라이저를 세팅");
+		return;
+	}
+}
+
+void UEngineMaterial::RasterizerSetting()
+{
+#ifdef DEBUG
+	if (nullptr == Rasterizer)
+	{
+		MsgBoxAssert("레스터라이저를 세팅하지 않고 렌더링 하려고 했습니다.");
+		return;
+	}
+#endif // DEBUG
+
+	Rasterizer->Setting();
 }

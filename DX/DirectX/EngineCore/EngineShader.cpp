@@ -52,5 +52,5 @@ UEngineShader::~UEngineShader()
 
 void UEngineShader::ShaderResCheck()
 {
-	Resource->sh
+	Resource->ShaderResourcesCheck(Type,EntryName,ShaderCodeBlob);
 }

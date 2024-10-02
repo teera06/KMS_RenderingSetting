@@ -18,4 +18,7 @@ void URenderUnit::RenderingSetting()
 
 	// 인덱스 버퍼 세팅
 	Mesh->InputAssmbler2Setting();
+
+	// 레스터라이저 세팅
+	Material->RasterizerSetting();
 }

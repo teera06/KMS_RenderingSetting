@@ -1,11 +1,12 @@
 #include "PreCompile.h"
 #include "EngineShaderResources.h"
 #include "EngineConstantBuffer.h"
+#include "EngineStructuredBuffer.h"
 
 #include "EngineTexture.h"
 #include "EngineSampler.h"
 
-void EngineShaderResources::SettingConstantBuffer(std::string_view _Name, const void* _Data, UINT _Size)
+void UEngineShaderResources::SettingConstantBuffer(std::string_view _Name, const void* _Data, UINT _Size)
 {
 	std::string UpperName = UEngineString::ToUpper(_Name);
 
@@ -34,7 +35,7 @@ void EngineShaderResources::SettingConstantBuffer(std::string_view _Name, const 
 	}
 }
 
-bool EngineShaderResources::IsConstantBuffer(std::string_view _Name)
+bool UEngineShaderResources::IsConstantBuffer(std::string_view _Name)
 {
 	std::string UpperName = UEngineString::ToUpper(_Name);
 
@@ -51,13 +52,13 @@ bool EngineShaderResources::IsConstantBuffer(std::string_view _Name)
 	return false;
 }
 
-void EngineShaderResources::SettingTexture(std::string_view _TexName, std::string_view _ImageName, std::string_view _SamperName)
+void UEngineShaderResources::SettingTexture(std::string_view _TexName, std::string_view _ImageName, std::string_view _SamperName)
 {
 	std::shared_ptr<UEngineTexture> FindTexture = UEngineTexture::FindRes(_ImageName);
 	SettingTexture(_TexName, FindTexture, _SamperName);
 }
 
-void EngineShaderResources::SettingTexture(std::string_view _TexName, std::shared_ptr<UEngineTexture> _Texture, std::string_view _SamperName)
+void UEngineShaderResources::SettingTexture(std::string_view _TexName, std::shared_ptr<UEngineTexture> _Texture, std::string_view _SamperName)
 {
 	std::shared_ptr<UEngineTexture> FindTexture = _Texture;
 	std::shared_ptr<UEngineSampler> FindSampler = UEngineSampler::FindRes(_SamperName);
@@ -104,7 +105,7 @@ void EngineShaderResources::SettingTexture(std::string_view _TexName, std::share
 
 }
 
-void EngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode)
+void UEngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode)
 {
 	// _EntryName -> 무슨 쉐이더에 무슨 리소스가 있는지 확인용
 
@@ -144,6 +145,7 @@ void EngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_
 		switch (Type)
 		{
 		case D3D_SIT_CBUFFER:
+		{
 			// 상수버퍼의 세세한 정보를 알려줘
 			ID3D11ShaderReflectionConstantBuffer* BufferInfo = CompileInfo->GetConstantBufferByName(ResDesc.Name);
 
@@ -151,12 +153,57 @@ void EngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_
 
 			BufferInfo->GetDesc(&ConstantBufferDesc);
 
+			_EntryName;
+
 			std::shared_ptr<UEngineConstantBuffer> Buffer = UEngineConstantBuffer::CreateAndFind(_Type, ResDesc.Name, ConstantBufferDesc.Size);
 
-			UEngineConstantBuffer& NewSetter = ConstantBuffers[_Type][UpperName];
+			UEngineConstantBufferSetter& NewSetter = ConstantBuffers[_Type][UpperName];
 
+			NewSetter.SetName(ResDesc.Name);
+			NewSetter.Type = _Type;
+			NewSetter.Slot = ResDesc.BindPoint;
+			NewSetter.BufferSize = ConstantBufferDesc.Size;
+			NewSetter.Res = Buffer;
 			break;
+		}
+		case D3D_SIT_TEXTURE:
+		{
+			ResDesc.Name;
+			UEngineTexturSetter& NewSetter = Textures[_Type][UpperName];
+			NewSetter.SetName(ResDesc.Name);
+			NewSetter.Type = _Type;
+			NewSetter.Slot = ResDesc.BindPoint;
+			break;
+		}
+		case D3D_SIT_SAMPLER:
+		{
+			ResDesc.Name;
+			UEngineSamplerSetter& NewSetter = Samplers[_Type][UpperName];
+			NewSetter.SetName(ResDesc.Name);
+			NewSetter.Type = _Type;
+			NewSetter.Slot = ResDesc.BindPoint;
+			break;
+		}
+		case D3D_SIT_STRUCTURED:
+		{
+			ID3D11ShaderReflectionConstantBuffer* BufferInfo = CompileInfo->GetConstantBufferByName(ResDesc.Name);
+			D3D11_SHADER_BUFFER_DESC ConstantBufferDesc = {};
+			BufferInfo->GetDesc(&ConstantBufferDesc);
+			_EntryName;
+
+			ResDesc.Name;
+			UEngineStructuredBufferSetter& NewSetter = StructureBuffers[_Type][UpperName];
+			NewSetter.SetName(ResDesc.Name);
+			NewSetter.Type = _Type;
+			NewSetter.Slot = ResDesc.BindPoint;
+			NewSetter.BufferSize = ConstantBufferDesc.Size;
+
+			std::shared_ptr<UEngineStructuredBuffer> Buffer = UEngineStructuredBuffer::CreateAndFind(_Type, ResDesc.Name, NewSetter.BufferSize);
+			NewSetter.Res = Buffer;
+			break;
+		}
 		default:
+			MsgBoxAssert("처리할 수 없는 타입입니다.")
 			break;
 		}
 	}

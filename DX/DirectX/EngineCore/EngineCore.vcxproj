@@ -217,6 +217,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EnginePixelShader.h" />
+    <ClInclude Include="EngineRasterizer.h" />
     <ClInclude Include="EngineRenderTarget.h" />
     <ClInclude Include="EngineSampler.h" />
     <ClInclude Include="EngineShader.h" />
@@ -346,6 +348,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EnginePixelShader.cpp" />
+    <ClCompile Include="EngineRasterizer.cpp" />
     <ClCompile Include="EngineRenderTarget.cpp" />
     <ClCompile Include="EngineSampler.cpp" />
     <ClCompile Include="EngineShader.cpp" />

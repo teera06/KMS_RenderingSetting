@@ -26,7 +26,7 @@ UEngineGraphicDevice::~UEngineGraphicDevice()
 	}
 }
 
-void UEngineGraphicDevice::Initalize(const UEngineWindow& _Window, const float4& _Clearclolor)
+void UEngineGraphicDevice::Initialize(const UEngineWindow& _Window, const float4& _Clearclolor)
 {
 	if (nullptr == _Window.GetHWND())
 	{
@@ -107,7 +107,7 @@ void UEngineGraphicDevice::Initalize(const UEngineWindow& _Window, const float4&
 	windowPtr = &_Window;
 
 	CreateSwapChain(_Clearclolor);
-
+	EngineResourcesInit();
 	
 }
 

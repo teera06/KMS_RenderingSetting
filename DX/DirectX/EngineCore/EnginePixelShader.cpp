@@ -1,16 +1,21 @@
 #include "PreCompile.h"
-#include "EngineVertexShader.h"
+#include "EnginePixelShader.h"
 #include "EngineCore.h"
 
-UEngineVertexShader::UEngineVertexShader()
+UEnginePixelShader::UEnginePixelShader()
 {
+	Type = EShaderType::Pixel;
 }
 
-UEngineVertexShader::~UEngineVertexShader()
+UEnginePixelShader::~UEnginePixelShader()
 {
+	if (nullptr != ShaderPtr)
+	{
+		ShaderPtr->Release();
+	}
 }
 
-void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT _Low)
+void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT _Low)
 {
 	EntryName = _EntryPoint;
 
@@ -20,26 +25,27 @@ void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT
 	const wchar_t* WPathPtr = WPath.c_str();
 
 	CONST D3D_SHADER_MACRO* pDefines = nullptr;
-	// 주소값이 1인 포인터를 넣어줌
 
 	ID3DInclude* pInclude = D3D_COMPILE_STANDARD_FILE_INCLUDE;
 	const char* pEntrypoint = _EntryPoint.data();
 
-	std::string Version = "vs_" + std::to_string(_High) + "_" + std::to_string(_Low);
+	// 앞쪽이 
+	std::string Version = "ps_" + std::to_string(_High) + "_" + std::to_string(_Low);
 
-	// 쉐이더도 버전이 있다.
-	// 사용하는건 5.0
-
+	// 쉐이더도 버전이 있습니다.
+	// 저는 5_0으로 하려고 합니다.
 	const char* Target = Version.c_str();
 
 	int Flag0 = 0;
 
-#ifdef DEBUG
-
-	Flag0 = D3D11_SHADER_DEBUG;
-#endif // DEBUG
-	// 나중에 행렬을 쉐이더에 알려줄때 행렬이 전치되서 들어가는걸 방지
-	// 메모리 정렬 그래픽카드가 역순
+#ifdef _DEBUG
+	// 오타난거 아님 D3D10
+	Flag0 = D3D10_SHADER_DEBUG;
+#endif
+	// 나중에 행렬을 쉐이더에 알려줄때 행렬이 전치되서 들어가는걸
+	// 막는거야 눈에 보이는데로 들어갑니다.
+	// 전치되는 이유 나도 모름.
+	// 메모리 정렬이 그래픽카드가 역순이라고 합니다.
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 	int Flag1 = 0;
@@ -55,6 +61,7 @@ void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT
 		&ShaderCodeBlob,
 		&ErrorCodeBlob
 	);
+	// ErrorCodeBlob에러에 대한 내용이 여기 담긴다.
 
 	if (S_OK != Result)
 	{
@@ -63,7 +70,7 @@ void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT
 		return;
 	}
 
-	Result = GEngine->GetDirectXDevice()->CreateVertexShader(
+	Result = GEngine->GetDirectXDevice()->CreatePixelShader(
 		ShaderCodeBlob->GetBufferPointer(),
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,
@@ -77,16 +84,4 @@ void UEngineVertexShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT
 	}
 
 	ShaderResCheck();
-}
-
-void UEngineVertexShader::Setting()
-{
-#ifdef DEBUG
-	if (nullptr == ShaderPtr)
-	{
-		MsgBoxAssert("만들어지지 않은 버텍스 쉐이더를 세팅하려고 했습니다.");
-	}
-#endif // DEBUG
-
-	GEngine->GetDirectXContext()->VSSetShader(ShaderPtr, nullptr, 0);
 }

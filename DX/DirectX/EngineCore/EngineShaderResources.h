@@ -39,6 +39,7 @@ public:
 	void PushData(const void* _Data, UINT _Size);
 
 	UEngineSerializer Ser;
+	UINT BufferSize = 0;
 };
 
 class UEngineTexturSetter : public USetterBase
@@ -56,8 +57,9 @@ public:
 
 };
 
-class EngineShaderResources 
+class UEngineShaderResources 
 {
+	friend UEngineShader;
 public:
 	template<typename Value>
 	void SettingConstantBuffer(std::string_view _Name, Value& _Data)

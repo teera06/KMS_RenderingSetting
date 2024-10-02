@@ -17,4 +17,20 @@
       <UniqueIdentifier>{adbc2146-e38a-474e-8965-1b8231d60a1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ImageShader.fx">
+      <Filter>2D</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EngineVertex.hlsli">
+      <Filter>Header</Filter>
+    </None>
+    <None Include="EngineShaderBase.hlsli">
+      <Filter>Header</Filter>
+    </None>
+    <None Include="TransformData.hlsli">
+      <Filter>Header</Filter>
+    </None>
+  </ItemGroup>
 </Project>
