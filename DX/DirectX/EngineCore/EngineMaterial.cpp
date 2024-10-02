@@ -3,7 +3,7 @@
 #include "EngineVertexShader.h"
 #include "EngineRasterizer.h"
 #include "EnginePixelShader.h"
-
+#include "EngineDepthStencil.h"
 
 UEngineMaterial::UEngineMaterial()
 {
@@ -86,5 +86,29 @@ void UEngineMaterial::PixelShaderSetting()
 #endif // DEBUG
 
 	PixelShader->Setting();
+}
+
+void UEngineMaterial::SetDepthStencil(std::string_view _Name)
+{
+	DepthStencil = UEngineDepthStencil::FindRes(_Name);
+
+	if (nullptr == DepthStencil)
+	{
+		MsgBoxAssert("존재하지 않는 뎁스를 세팅하려고 햇습니다.");
+		return;
+	}
+}
+
+void UEngineMaterial::DepthStencilSetting()
+{
+#ifdef DEBUG
+	if (nullptr == DepthStencil)
+	{
+		MsgBoxAssert("깊이 세팅을 세팅하지 않고 랜더링 하려고 했습니다.");
+		return;
+	}
+#endif // DEBUG
+
+	DepthStencil->Setting();
 }
 

@@ -3,6 +3,7 @@
 class UEngineVertexShader;
 class UEngineRasterizer;
 class UEnginePixelShader;
+class UEngineDepthStencil;
 
 class UEngineMaterial : public UEngineResources<UEngineMaterial>
 {
@@ -36,6 +37,10 @@ public:
 	void SetPixeShader(std::string_view _Name);
 	void PixelShaderSetting();
 
+	// OutPut Merger -> DepthStencil
+	void SetDepthStencil(std::string_view _Name);
+	void DepthStencilSetting();
+
 private:
 	// πˆ≈ÿΩ∫ Ω¶¿Ã¥ı
 	std::shared_ptr<UEngineVertexShader> VertexShader = nullptr;
@@ -45,5 +50,10 @@ private:
 
 	// «»ºø Ω¶¿Ã¥ı
 	std::shared_ptr<UEnginePixelShader> PixelShader = nullptr;
+
+	// OutPut Merger -> DepthStencil
+	std::shared_ptr<UEngineDepthStencil> DepthStencil = nullptr;
+
+
 };
 

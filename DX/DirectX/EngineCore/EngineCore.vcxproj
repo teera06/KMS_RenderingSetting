@@ -180,6 +180,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DirectXHelper.h" />
+    <ClInclude Include="EngineBlend.h" />
     <ClInclude Include="EngineBuffer.h" />
     <ClInclude Include="EngineConstantBuffer.h" />
     <ClInclude Include="EngineDefines.h" />
@@ -314,6 +315,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DirectXHelper.cpp" />
+    <ClCompile Include="EngineBlend.cpp" />
     <ClCompile Include="EngineBuffer.cpp" />
     <ClCompile Include="EngineConstantBuffer.cpp" />
     <ClCompile Include="EngineCore.cpp">

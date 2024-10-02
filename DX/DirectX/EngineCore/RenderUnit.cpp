@@ -24,4 +24,8 @@ void URenderUnit::RenderingSetting()
 
 	// ÇÈ¼¿ ½¦ÀÌ´õ ¼¼ÆÃ
 	Material->PixelShaderSetting();
+
+
+	// OutPut Merger -> DepthStencil ¼¼ÆÃ
+	Material->DepthStencilSetting();
 }
