@@ -59,7 +59,7 @@ void USamCore::Initialize()
 		int a = 0;
 	}
 
-	/*{
+	{
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("ContentsResources");
 		Dir.Move("Image");
@@ -69,7 +69,7 @@ void USamCore::Initialize()
 		{
 			UEngineSprite::ThreadSafeLoad(File.GetFullPath());
 		}
-	}*/
+	}
 
 
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");

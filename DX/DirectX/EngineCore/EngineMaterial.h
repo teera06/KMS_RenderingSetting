@@ -1,11 +1,15 @@
 #pragma once
+#include "EngineVertexShader.h"
+#include "EnginePixelShader.h"
+#include "EngineRasterizer.h"
+#include "EngineDepthStencil.h"
+#include "EngineBlend.h"
+#include <EnginePlatform/EngineResources.h>
 
-class UEngineVertexShader;
-class UEngineRasterizer;
-class UEnginePixelShader;
-class UEngineBlend;
-class UEngineDepthStencil;
+// 1차 내가 이프로젝트를 dll로 사용하기로 했다.
+// 2차 
 
+// 설명 :
 class UEngineMaterial : public UEngineResources<UEngineMaterial>
 {
 public:
@@ -19,8 +23,7 @@ public:
 	__declspec(dllimport) UEngineMaterial& operator=(const UEngineMaterial& _Other) = delete;
 	__declspec(dllimport) UEngineMaterial& operator=(UEngineMaterial&& _Other) noexcept = delete;
 
-
-	static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name)
+	static std::shared_ptr<UEngineMaterial> Create(std::string _Name)
 	{
 		return CreateResName("", _Name);
 	}
@@ -43,46 +46,27 @@ public:
 		return Blend;
 	}
 
-	// 버텍스 쉐이더
+
 	void SetVertexShader(std::string_view _Name);
-	void VertexShaderSetting();
-
-	// 레스터라이저
+	void SetPixelShader(std::string_view _Name);
 	void SetRasterizer(std::string_view _Name);
-	void RasterizerSetting();
-
-
-	// 픽셀 쉐이더
-	void SetPixeShader(std::string_view _Name);
-	void PixelShaderSetting();
-
-	// OutPut Merger-> 블랜드
-	void SetBlend(std::string_view _Nmae);
-	void BlendSetting();
-
-	// OutPut Merger -> DepthStencil
+	void SetBlend(std::string_view _Name);
 	void SetDepthStencil(std::string_view _Name);
+
+	void VertexShaderSetting();
+	void RasterizerSetting();
+	void PixelShaderSetting();
+	void BlendSetting();
 	void DepthStencilSetting();
 
+protected:
+
 private:
-
-	// 버텍스 쉐이더
 	std::shared_ptr<UEngineVertexShader> VertexShader = nullptr;
-
-	// 레스터라이저
-	std::shared_ptr< UEngineRasterizer> Rasterizer = nullptr;
-
-	// 픽셀 쉐이더
 	std::shared_ptr<UEnginePixelShader> PixelShader = nullptr;
-
-	// OutPut Merger-> 블랜드
+	std::shared_ptr<UEngineRasterizer> Rasterizer = nullptr;
 	std::shared_ptr<UEngineBlend> Blend = nullptr;
-
-	// OutPut Merger -> DepthStencil
 	std::shared_ptr<UEngineDepthStencil> DepthStencil = nullptr;
-
-
-
-
+	
 };
 

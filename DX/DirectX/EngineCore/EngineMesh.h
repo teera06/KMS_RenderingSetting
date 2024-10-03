@@ -1,11 +1,10 @@
 #pragma once
+#include "EngineVertexBuffer.h"
+#include "EngineIndexBuffer.h"
 
-class UEngineVertexBuffer;
-class UEngineIndexBuffer;
-
+// 설명 :
 class URenderUnit;
-class URenderer;
-class UEngineMesh : public UEngineResources<UEngineMesh> 
+class UEngineMesh : public UEngineResources<UEngineMesh>
 {
 	friend URenderUnit;
 	friend URenderer;
@@ -33,23 +32,17 @@ public:
 		return Res;
 	}
 
-	void IndexDraw();
-
-	// 인스턴싱
+	void IndexedDraw();
 	void DrawIndexedInstanced(int _InstancingCount);
+
 protected:
 	void ResCreate(std::string_view _VertexName, std::string_view _IndexName);
-private:
-	// 버텍스 버퍼
-	std::shared_ptr<UEngineVertexBuffer> VertexBuffer = nullptr; 
 
-	// 인덱스 버퍼
+private:
+	std::shared_ptr<UEngineVertexBuffer> VertexBuffer = nullptr;
 	std::shared_ptr<UEngineIndexBuffer> IndexBuffer = nullptr;
 
-	// 버텍스 버퍼 세팅
-	void InputAssmbler1Setting(); 
-
-	// 인덱스 버퍼 세팅
-	void InputAssmbler2Setting();
+	void InputAssembler1Setting();
+	void InputAssembler2Setting();
 };
 

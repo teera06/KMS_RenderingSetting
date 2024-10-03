@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "DirectXHelper.h"
 
-UINT UDirectXHelper::DirectFormatsize(DXGI_FORMAT _Format)
+UINT UDirectXHelper::DirectFormatSize(DXGI_FORMAT _Format)
 {
 	switch (_Format)
 	{

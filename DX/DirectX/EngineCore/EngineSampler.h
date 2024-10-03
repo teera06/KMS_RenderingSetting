@@ -1,10 +1,12 @@
 #pragma once
+#include <EnginePlatform/EngineResources.h>
 #include "EngineEnums.h"
-
+// Ό³Έν :
 class UEngineSamplerSetter;
 class UEngineSampler : public UEngineResources<UEngineSampler>
 {
 	friend UEngineSamplerSetter;
+
 public:
 	// constrcuter destructer
 	UEngineSampler();
@@ -22,6 +24,8 @@ public:
 		Res->ResCreate(_Info);
 		return Res;
 	}
+
+protected:
 
 private:
 	ID3D11SamplerState* State = nullptr;

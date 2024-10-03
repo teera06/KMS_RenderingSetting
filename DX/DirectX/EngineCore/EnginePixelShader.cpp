@@ -1,13 +1,14 @@
 #include "PreCompile.h"
 #include "EnginePixelShader.h"
+#include <EngineBase/EngineString.h>
 #include "EngineCore.h"
 
-UEnginePixelShader::UEnginePixelShader()
+UEnginePixelShader::UEnginePixelShader() 
 {
 	Type = EShaderType::Pixel;
 }
 
-UEnginePixelShader::~UEnginePixelShader()
+UEnginePixelShader::~UEnginePixelShader() 
 {
 	if (nullptr != ShaderPtr)
 	{
@@ -15,8 +16,31 @@ UEnginePixelShader::~UEnginePixelShader()
 	}
 }
 
-void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT _Low)
+void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High /*= 5*/, UINT _Low /*= 0*/)
 {
+	
+	// 마소의 typedef 스탠다드
+	// LPCWSTR => const wchar_t* _Path
+	// LP  => 포인터넣어주세요
+	// C => const
+	// W => wchar_t
+	// STR => 문자열
+
+	// LPCSTR => const char* _Path
+	// LP  => 포인터넣어주세요
+	// C => const
+	// W 없음 => char
+	// STR => 문자열
+	
+   //LPCWSTR pFileName, <= 쉐이더 파일 경로
+   //CONST D3D_SHADER_MACRO* pDefines,
+   //ID3DInclude* pInclude,
+   //LPCSTR pEntrypoint,
+   //LPCSTR pTarget,
+   //UINT Flags1,
+   //UINT Flags2,
+   //ID3DBlob** ppCode,
+
 	EntryName = _EntryPoint;
 
 	std::string Path = GetPath();
@@ -25,7 +49,8 @@ void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT 
 	const wchar_t* WPathPtr = WPath.c_str();
 
 	CONST D3D_SHADER_MACRO* pDefines = nullptr;
-
+	// 주소값이 1인 포인터를 넣어준건데.
+	// 다이렉트가 아 그냥 쉐이더파일안에 있는 include 그냥 쓰겠다고 ok
 	ID3DInclude* pInclude = D3D_COMPILE_STANDARD_FILE_INCLUDE;
 	const char* pEntrypoint = _EntryPoint.data();
 
@@ -71,11 +96,11 @@ void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT 
 	}
 
 	Result = GEngine->GetDirectXDevice()->CreatePixelShader(
-		ShaderCodeBlob->GetBufferPointer(),
+		ShaderCodeBlob->GetBufferPointer(), 
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,
 		&ShaderPtr
-	);
+		);
 
 	if (S_OK != Result)
 	{
@@ -88,13 +113,12 @@ void UEnginePixelShader::ResLoad(std::string_view _EntryPoint, UINT _High, UINT 
 
 void UEnginePixelShader::Setting()
 {
-#ifdef DEBUG
+#ifdef _DEBUG
 	if (nullptr == ShaderPtr)
 	{
-		MsgBoxAssert("만들어지지 않은 픽셀 쉐이더를 세팅하려고 했습니다.");
+		MsgBoxAssert("만들어지지 않은 픽셀 쉐이더를 세팅하려고 했습니다" + GetName());
 	}
-#endif // DEBUG
+#endif
 
 	GEngine->GetDirectXContext()->PSSetShader(ShaderPtr, nullptr, 0);
-
 }

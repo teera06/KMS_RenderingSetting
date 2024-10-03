@@ -1,9 +1,12 @@
 #pragma once
+#include <EnginePlatform/EngineResources.h>
 
 class UEngineMaterial;
+// Ό³Έν :
 class UEngineDepthStencil : public UEngineResources<UEngineDepthStencil>
 {
 	friend UEngineMaterial;
+
 public:
 	// constrcuter destructer
 	UEngineDepthStencil();
@@ -21,11 +24,13 @@ public:
 		Res->ResCreate(_Info);
 		return Res;
 	}
+
+protected:
+	
+
 private:
 	ID3D11DepthStencilState* State = nullptr;
 
 	void ResCreate(const D3D11_DEPTH_STENCIL_DESC& _Info);
-
 	void Setting();
 };
-

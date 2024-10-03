@@ -1,7 +1,10 @@
 #pragma once
+
+// Ό³Έν :
 class UDirectXHelper
 {
 public:
-	static UINT DirectFormatsize(DXGI_FORMAT _Format);
+	static UINT DirectFormatSize(DXGI_FORMAT _Format);
+
 };
 

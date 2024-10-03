@@ -3,7 +3,6 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include "ContentsEnum.h"
 #include <EngineCore/SpriteInstancingRender.h>
-#include <EngineCore/Camera.h>
 
 std::string APlayer::RendererName = "Renderer";
 

@@ -1,12 +1,17 @@
 #pragma once
-#include "EngineEnums.h"
+#include <EnginePlatform/EngineResources.h>
+#include <map>
 
 #include "EngineBuffer.h"
+#include "EngineShader.h"
+#include "EngineEnums.h"
 
 class UEngineConstantBufferSetter;
+// 설명 :
 class UEngineConstantBuffer : public UEngineResources<UEngineConstantBuffer>, public UEngineBuffer
 {
 	friend UEngineConstantBufferSetter;
+
 public:
 	// constrcuter destructer
 	UEngineConstantBuffer();
@@ -18,6 +23,8 @@ public:
 	UEngineConstantBuffer& operator=(const UEngineConstantBuffer& _Other) = delete;
 	UEngineConstantBuffer& operator=(UEngineConstantBuffer&& _Other) noexcept = delete;
 
+	// 없으면 만들고
+	// 있으면 찾아서 리턴합니다.
 	static std::shared_ptr<UEngineConstantBuffer> CreateAndFind(EShaderType _Type, std::string_view _Name, UINT _ByteSize)
 	{
 		if (0 >= _ByteSize)
@@ -29,17 +36,23 @@ public:
 
 		if (false == ConstantBuffers.contains(_Type))
 		{
+			// 없으면 만들어버려.
 			ConstantBuffers[_Type];
 		}
 
+
 		if (false == ConstantBuffers[_Type].contains(UpperName))
 		{
+			// 없으면 만들어버려.
 			ConstantBuffers[_Type][UpperName];
 		}
 
+		// Ftransform이라는 이름을 가진 그룹이 있어?
+		// 없을수가 없게 만들어버렸습니다.
 		std::map<int, std::shared_ptr<UEngineConstantBuffer>>& Buffers = ConstantBuffers[_Type][UpperName];
 
-		if(true==Buffers.contains(_ByteSize))
+		// Ftransform 이름을 가진 500바이트 짜리 상수버퍼가 있어?
+		if (true == Buffers.contains(_ByteSize))
 		{
 			return Buffers[_ByteSize];
 		}
@@ -53,13 +66,15 @@ public:
 
 	void ChangeData(const void* _Data, UINT _Size);
 
+protected:
+
 private:
 	static std::map<EShaderType, std::map<std::string, std::map<int, std::shared_ptr<UEngineConstantBuffer>>>> ConstantBuffers;
 
 	void ResCreate(UINT _ByteSize);
-	
+
 	void Setting(EShaderType _Type, UINT _Slot);
 	void Reset(EShaderType _Type, UINT _Slot);
-};
 
+};
 

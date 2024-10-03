@@ -2,9 +2,11 @@
 #include "EngineBuffer.h"
 
 class UEngineMesh;
-class UEngineIndexBuffer : public UEngineResources<UEngineIndexBuffer>, public UEngineBuffer 
+// Ό³Έν :
+class UEngineIndexBuffer : public UEngineResources<UEngineIndexBuffer>, public UEngineBuffer
 {
 	friend UEngineMesh;
+
 public:
 	// constrcuter destructer
 	UEngineIndexBuffer();
@@ -24,17 +26,17 @@ public:
 		return Res;
 	}
 
+protected:
+
 private:
 	DXGI_FORMAT Format = DXGI_FORMAT::DXGI_FORMAT_R32_SINT;
 
 	UINT Size = 0;
 	UINT Count = 0;
 	UINT Offset = 0;
-
+	
 	void ResCreate(const void* _Data, UINT _Size, UINT _Count);
 
 	void Setting();
-	
-
 };
 

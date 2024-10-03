@@ -18,15 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ImageShader.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="EngineShaderBase.hlsli" />
-    <None Include="EngineTexture.hlsli" />
-    <None Include="EngineVertex.hlsli" />
-    <None Include="TransformData.hlsli" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -135,6 +126,26 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <FxCompile Include="BlurEffectShader.fx" />
+    <FxCompile Include="ColorShader.fx" />
+    <FxCompile Include="DebugShader.fx" />
+    <FxCompile Include="ImageShader.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="ImageShaderInstanced.fx" />
+    <FxCompile Include="TargetCopyShader.fx" />
+    <FxCompile Include="WidgetImageShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EngineShaderBase.hlsli" />
+    <None Include="EngineTexture.hlsli" />
+    <None Include="EngineVertex.hlsli" />
+    <None Include="TransformData.hlsli" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

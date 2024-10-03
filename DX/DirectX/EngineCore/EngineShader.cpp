@@ -1,11 +1,13 @@
 #include "PreCompile.h"
 #include "EngineShader.h"
-#include "EngineVertexShader.h"
 #include "EngineShaderResources.h"
+#include "EngineVertexShader.h"
+#include "EnginePixelShader.h"
 
 void UEngineShader::AutoCompile(UEngineDirectory _Dir)
 {
-	std::vector<UEngineFile> Files = _Dir.GetAllFile({ ".fx","hlsi" });
+
+	std::vector<UEngineFile> Files = _Dir.GetAllFile({ ".fx", "hlsl" });
 
 	for (size_t i = 0; i < Files.size(); i++)
 	{
@@ -13,44 +15,58 @@ void UEngineShader::AutoCompile(UEngineDirectory _Dir)
 		std::string AllShaderCode = Files[i].GetString();
 
 		{
-			size_t ShaderEntryEnd = AllShaderCode.find("_Vs(");
+			// 앞에서부터 뒤로
+			size_t ShaderEntryEnd = AllShaderCode.find("_VS("/*, 0*/);
 
 			if (std::string::npos != ShaderEntryEnd)
 			{
+				// 뒤에서부터 앞으로
 				size_t ShaderEntryStart = AllShaderCode.rfind(" ", ShaderEntryEnd);
 				std::string EntryName = AllShaderCode.substr(ShaderEntryStart + 1, ShaderEntryEnd - ShaderEntryStart - 1);
 				EntryName += "_VS";
 
 				UEngineVertexShader::Load(FullPath.c_str(), EntryName);
-			
 			}
 		}
 
 		{
-			size_t ShaderEntryEnd = AllShaderCode.find("_PS(");
+			// 앞에서부터 뒤로
+			size_t ShaderEntryEnd = AllShaderCode.find("_PS("/*, 0*/);
 
 			if (std::string::npos != ShaderEntryEnd)
 			{
+				// 뒤에서부터 앞으로
 				size_t ShaderEntryStart = AllShaderCode.rfind(" ", ShaderEntryEnd);
 				std::string EntryName = AllShaderCode.substr(ShaderEntryStart + 1, ShaderEntryEnd - ShaderEntryStart - 1);
 				EntryName += "_PS";
 
-				UEngineVertexShader::Load(FullPath.c_str(), EntryName);
-
+				UEnginePixelShader::Load(FullPath.c_str(), EntryName);
 			}
 		}
 	}
 }
 
-UEngineShader::UEngineShader()
+UEngineShader::UEngineShader() 
 {
+	Resources = std::make_shared<UEngineShaderResources>();
 }
 
-UEngineShader::~UEngineShader()
+UEngineShader::~UEngineShader() 
 {
+	if (nullptr != ErrorCodeBlob)
+	{
+		ErrorCodeBlob->Release();
+	}
+
+	if (nullptr != ShaderCodeBlob)
+	{
+		ShaderCodeBlob->Release();
+	}
 }
+
+
 
 void UEngineShader::ShaderResCheck()
 {
-	Resource->ShaderResourcesCheck(Type,EntryName,ShaderCodeBlob);
+	Resources->ShaderResourcesCheck(Type, EntryName, ShaderCodeBlob);
 }

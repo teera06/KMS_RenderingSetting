@@ -1,22 +1,115 @@
 #include "PreCompile.h"
 #include "RenderUnit.h"
-
-#include "EngineMesh.h"
-#include "EngineMaterial.h"
-
-#include "EngineInputLayOut.h"
-
 #include "EngineCore.h"
-#include "EngineShaderResources.h"
-#include "EngineShader.h"
 
 URenderUnit::URenderUnit()
 {
+	Resources = std::make_shared<UEngineShaderResources>();
+
 }
 
 URenderUnit::~URenderUnit()
 {
+	Mesh = nullptr;
+	Material = nullptr;
+	Resources = nullptr;
 }
+
+void URenderUnit::RenderingSetting()
+{
+
+
+	Mesh->InputAssembler1Setting();
+	LayOut->Setting();
+
+	// VertexShader
+	Material->VertexShaderSetting();
+
+	// InputAssembler2
+	Mesh->InputAssembler2Setting();
+
+	// Rasterizer
+	Material->RasterizerSetting();
+
+	// PixelShader
+	Material->PixelShaderSetting();
+
+	Material->BlendSetting();
+	Material->DepthStencilSetting();
+}
+
+bool URenderUnit::Render(float _DeltaTime)
+{
+	// 순서는 상관업습니다.
+
+	if (nullptr == Mesh)
+	{
+		MsgBoxLog("매쉬가 세팅되지 않았습니다.")
+		return false;
+	}
+
+	if (nullptr == Material)
+	{
+		MsgBoxLog("머티리얼이 세팅되지 않았습니다.")
+		return false;
+	}
+
+	// 여기에서 이걸 하는 이유는 딱 1개입니다.
+	// 교육용으로 랜더링파이프라인의 순서에 따라 세팅해주려는 것뿐이지
+	// 꼭 아래의 순서대로 세팅을 해야만 랜더링이 되는게 아니에요.
+	// Mesh->Setting()
+
+	RenderingSetting();
+
+
+	Resources->SettingAllShaderResources();
+
+	// Draw
+	Mesh->IndexedDraw();
+
+	BaseValue;
+
+	Resources->ResetAllShaderResources();
+
+	return true;
+}
+
+bool URenderUnit::RenderInstancing(float _DeltaTime, int _Count)
+{
+	// 순서는 상관업습니다.
+
+	if (nullptr == Mesh)
+	{
+		MsgBoxLog("매쉬가 세팅되지 않았습니다.")
+			return false;
+	}
+
+	if (nullptr == Material)
+	{
+		MsgBoxLog("머티리얼이 세팅되지 않았습니다.")
+			return false;
+	}
+
+	// 여기에서 이걸 하는 이유는 딱 1개입니다.
+	// 교육용으로 랜더링파이프라인의 순서에 따라 세팅해주려는 것뿐이지
+	// 꼭 아래의 순서대로 세팅을 해야만 랜더링이 되는게 아니에요.
+	// Mesh->Setting()
+
+	RenderingSetting();
+
+
+	Resources->SettingAllShaderResources();
+
+	// Draw
+	Mesh->DrawIndexedInstanced(_Count);
+
+	BaseValue;
+
+	Resources->ResetAllShaderResources();
+
+	return true;
+}
+
 
 void URenderUnit::SetMesh(std::string_view _Name)
 {
@@ -24,7 +117,7 @@ void URenderUnit::SetMesh(std::string_view _Name)
 
 	if (nullptr == Mesh)
 	{
-		MsgBoxAssert("존재하지 않는 메시를 세팅하려고 햇습니다.");
+		MsgBoxAssert("존재하지 않는 매쉬를 세팅하려고 했습니다." + std::string(_Name));
 		return;
 	}
 
@@ -66,38 +159,11 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 	}
 
 	MaterialSettingEnd();
-
-
-}
-
-void URenderUnit::RenderingSetting()
-{
-	// 버텍스 버퍼 세팅
-	Mesh->InputAssmbler1Setting();
-	// 인풋 레이아웃
-	LayOut->Setting();
-
-	// 버텍스 쉐이더 
-	Material->VertexShaderSetting();
-
-	// 인덱스 버퍼 세팅
-	Mesh->InputAssmbler2Setting();
-
-	// 레스터라이저 세팅
-	Material->RasterizerSetting();
-
-	// 픽셀 쉐이더 세팅
-	Material->PixelShaderSetting();
-
-	// OutPut Merger -> DepthStencil 세팅
-	Material->DepthStencilSetting();
-
-	// OutPUt Merger -> 블랜드 세팅
-	Material->BlendSetting();
 }
 
 void URenderUnit::ResCopy(UEngineShader* _Shader)
 {
+
 	// 상수버퍼 복사
 	{
 		std::map<EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& RendererConstantBuffers
@@ -173,25 +239,9 @@ void URenderUnit::ResCopy(UEngineShader* _Shader)
 			}
 		}
 	}
-}
 
-bool URenderUnit::Render(float _DeltaTime)
-{
-	if (nullptr == Mesh)
-	{
-		MsgBoxLog("매쉬가 세팅되지 않았습니다.")
-			return false;
-	}
 
-	if (nullptr == Material)
-	{
-		MsgBoxLog("머티리얼이 세팅되지 않았습니다.")
-			return false;
-	}
 
-	RenderingSetting();
-
-	Resources->SettingAllShaderResources();
 }
 
 void URenderUnit::Update(float _DeltaTime)

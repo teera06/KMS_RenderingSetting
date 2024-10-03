@@ -1,4 +1,6 @@
 #pragma once
+#include <EnginePlatform/EngineResources.h>
+// Ό³Έν :
 class UEngineBuffer
 {
 public:
@@ -13,8 +15,12 @@ public:
 	UEngineBuffer& operator=(UEngineBuffer&& _Other) noexcept = delete;
 
 	void Release();
+
 protected:
 	D3D11_BUFFER_DESC BufferInfo = {};
 	ID3D11Buffer* Buffer = nullptr;
+
+private:
+	
 };
 

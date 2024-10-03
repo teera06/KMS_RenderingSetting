@@ -1,9 +1,12 @@
 #pragma once
+#include <EnginePlatform/EngineResources.h>
 
 class UEngineMaterial;
-class UEngineRasterizer : UEngineResources<UEngineRasterizer>
+// Ό³Έν :
+class  UEngineRasterizer : public UEngineResources<UEngineRasterizer>
 {
 	friend UEngineMaterial;
+
 public:
 	// constrcuter destructer
 	UEngineRasterizer();
@@ -22,10 +25,12 @@ public:
 		return Res;
 	}
 
+protected:
+	
+
 private:
 	ID3D11RasterizerState* State = nullptr;
 
 	void ResCreate(const D3D11_RASTERIZER_DESC& _Info);
 	void Setting();
 };
-
