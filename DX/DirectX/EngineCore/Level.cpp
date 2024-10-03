@@ -157,7 +157,7 @@ void ULevel::Render(float _DeltaTime)
 		}
 	}
 
-	MainCamera->CameraTarget->Effect(_DeltaTime);
+	//MainCamera->CameraTarget->Effect(_DeltaTime);
 
 	// 모든 일반오브젝트들이 랜더링을 하고
 
@@ -199,7 +199,7 @@ void ULevel::Render(float _DeltaTime)
 	LastTarget->Clear();
 	LastTarget->Merge(MainCamera->CameraTarget);
 	LastTarget->Merge(UICamera->CameraTarget);
-	LastTarget->Effect(_DeltaTime);
+	//LastTarget->Effect(_DeltaTime);
 
 	// 여기 이순간.
 	// 포스트 이팩트

@@ -8,9 +8,11 @@ struct IDXGIAdapter;
 
 class UEngineRenderTarget;
 class UEngineWindow;
+class ULevel;
 
 class UEngineGraphicDevice
 {
+	friend ULevel;
 public:
 	// constrcuter destructer
 	UEngineGraphicDevice();

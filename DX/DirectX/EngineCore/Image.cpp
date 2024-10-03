@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "Image.h"
+#include "EngineShaderResources.h"
+
 void UImage::SetFrameCallback(std::string_view _AnimationName, int _Index, std::function<void()> _Function)
 {
 	std::string UpperName = UEngineString::ToUpper(_AnimationName);

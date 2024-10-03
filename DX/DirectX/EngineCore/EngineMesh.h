@@ -4,9 +4,11 @@ class UEngineVertexBuffer;
 class UEngineIndexBuffer;
 
 class URenderUnit;
+class URenderer;
 class UEngineMesh : public UEngineResources<UEngineMesh> 
 {
 	friend URenderUnit;
+	friend URenderer;
 
 public:
 	// constrcuter destructer
