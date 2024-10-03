@@ -78,9 +78,9 @@ void UEngineShaderResources::SettingTexture(std::string_view _TexName, std::shar
 	std::string UppertName = UEngineString::ToUpper(_TexName);
 	std::string SamUpperNmae = UppertName + "_SAMPLER";
 
-	for (std::pair<const EShaderType, std::map<std::string, UEngineTexturSetter>>& Pair : Textures)
+	for (std::pair<const EShaderType, std::map<std::string, UEngineTextureSetter>>& Pair : Textures)
 	{
-		std::map<std::string, UEngineTexturSetter>& TexMap = Pair.second;
+		std::map<std::string, UEngineTextureSetter>& TexMap = Pair.second;
 		std::map<std::string, UEngineSamplerSetter>& SmpMap = Samplers[Pair.first];
 
 		// 샘플러와 텍스처가 한쌍이 아니면 세팅자제를 하지 않는 구조
@@ -95,7 +95,7 @@ void UEngineShaderResources::SettingTexture(std::string_view _TexName, std::shar
 			continue;
 		}
 
-		UEngineTexturSetter& TexSetter = TexMap[UppertName];
+		UEngineTextureSetter& TexSetter = TexMap[UppertName];
 		UEngineSamplerSetter& SamSetter = SmpMap[SamUpperNmae];
 
 		TexSetter.Res = FindTexture;
@@ -103,6 +103,50 @@ void UEngineShaderResources::SettingTexture(std::string_view _TexName, std::shar
 	}
 	
 
+}
+
+void UEngineShaderResources::SettingAllShaderResources()
+{
+	// 상수 버퍼 세팅
+	for (std::pair<const EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& Pair : ConstantBuffers)
+	{
+		std::map<std::string, UEngineConstantBufferSetter>& ResMap = Pair.second;
+
+		for (std::pair<const std::string, UEngineConstantBufferSetter>& Setter : ResMap)
+		{
+			Setter.second.Setting();
+		}
+	}
+
+	for (std::pair<const EShaderType, std::map<std::string, UEngineTextureSetter>>& Pair : Textures)
+	{
+		std::map<std::string, UEngineTextureSetter>& ResMap = Pair.second;
+
+		for (std::pair<const std::string, UEngineTextureSetter>& Setter : ResMap)
+		{
+			Setter.second.Setting();
+		}
+	}
+
+	for (std::pair<const EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& Pair : ConstantBuffers)
+	{
+		std::map<std::string, UEngineConstantBufferSetter>& ResMap = Pair.second;
+
+		for (std::pair<const std::string, UEngineConstantBufferSetter>& Setter : ResMap)
+		{
+			Setter.second.Setting();
+		}
+	}
+
+	for (std::pair<const EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& Pair : ConstantBuffers)
+	{
+		std::map<std::string, UEngineConstantBufferSetter>& ResMap = Pair.second;
+
+		for (std::pair<const std::string, UEngineConstantBufferSetter>& Setter : ResMap)
+		{
+			Setter.second.Setting();
+		}
+	}
 }
 
 void UEngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode)
@@ -169,7 +213,7 @@ void UEngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string
 		case D3D_SIT_TEXTURE:
 		{
 			ResDesc.Name;
-			UEngineTexturSetter& NewSetter = Textures[_Type][UpperName];
+			UEngineTextureSetter& NewSetter = Textures[_Type][UpperName];
 			NewSetter.SetName(ResDesc.Name);
 			NewSetter.Type = _Type;
 			NewSetter.Slot = ResDesc.BindPoint;
@@ -224,7 +268,61 @@ void UEngineConstantBufferSetter::Setting()
 	Res->Setting(Type, Slot);
 }
 
+void UEngineConstantBufferSetter::Reset()
+{
+	Res->Reset(Type, Slot);
+}
+
 void UEngineStructuredBufferSetter::PushData(const void* _Data, UINT _Size)
 {
 
+}
+
+void UEngineTextureSetter::Setting()
+{
+#ifdef _DEBUG
+	if (nullptr == Res)
+	{
+		MsgBoxAssert(GetName() + "텍스처를 세팅해주지 않았습니다.");
+		
+	}
+#endif // _DEBUG
+
+	Res->Setting(Type, Slot);
+}
+
+void UEngineTextureSetter::Reset()
+{
+#ifdef _DEBUG
+	if (nullptr == Res)
+	{
+		MsgBoxAssert(GetName() + " 텍스처를 세팅해주지 않았습니다.");
+	}
+#endif
+
+	Res->Reset(Type, Slot);
+}
+
+void UEngineSamplerSetter::Setting()
+{
+#ifdef _DEBUG
+	if (nullptr == Res)
+	{
+		MsgBoxAssert(GetName() + " 샘플러를 세팅해주지 않았습니다.");
+	}
+#endif
+
+	Res->Setting(Type, Slot);
+}
+
+void UEngineSamplerSetter::Reset()
+{
+#ifdef _DEBUG
+	if (nullptr == Res)
+	{
+		MsgBoxAssert(GetName() + " 샘플러를 세팅해주지 않았습니다.");
+	}
+#endif
+
+	Res->Reset(Type, Slot);
 }

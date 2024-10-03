@@ -128,3 +128,40 @@ void UEngineTexture::CreateDepthStencilView()
 		return;
 	}
 }
+
+void UEngineTexture::Setting(EShaderType _Type, UINT _Slot)
+{
+	switch (_Type)
+	{
+	case EShaderType::NONE:
+		break;
+	case EShaderType::Vertex:
+		GEngine->GetDirectXContext()->VSSetShaderResources(_Slot, 1, &SRV);
+		break;
+	case EShaderType::Pixel:
+		GEngine->GetDirectXContext()->PSGetShaderResources(_Slot, 1, &SRV);
+		break;
+	default:
+		MsgBoxAssert("타입이 불분명한 텍스처 세팅");
+		break;
+	}
+}
+
+void UEngineTexture::Reset(EShaderType _Type, UINT _Slot)
+{
+	ID3D11ShaderResourceView* NullptrSRV = nullptr;
+
+	switch (_Type)
+	{
+	case EShaderType::Vertex:
+		GEngine->GetDirectXContext()->VSSetShaderResources(_Slot, 1, &NullptrSRV);
+		break;
+	case EShaderType::Pixel:
+		GEngine->GetDirectXContext()->PSSetShaderResources(_Slot, 1, &NullptrSRV);
+		break;
+	case EShaderType::NONE:
+	default:
+		MsgBoxAssert("타입이 불분명한 텍스처 세팅입니다.");
+		break;
+	}
+}

@@ -25,7 +25,9 @@ void URenderUnit::RenderingSetting()
 	// 픽셀 쉐이더 세팅
 	Material->PixelShaderSetting();
 
-
 	// OutPut Merger -> DepthStencil 세팅
 	Material->DepthStencilSetting();
+
+	// OutPUt Merger -> 블랜드 세팅
+	Material->BlendSetting();
 }

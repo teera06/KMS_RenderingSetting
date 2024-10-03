@@ -20,7 +20,7 @@ public:
 	UINT BufferSize = 0;
 
 	void Setting();
-	//void Reset();
+	void Reset();
 };
 
 class UEngineStructuredBuffer;
@@ -42,11 +42,13 @@ public:
 	UINT BufferSize = 0;
 };
 
-class UEngineTexturSetter : public USetterBase
+class UEngineTextureSetter : public USetterBase
 {
 
 public:
 	std::shared_ptr<class UEngineTexture> Res;
+	void Setting();
+	void Reset();
 	
 };
 
@@ -54,7 +56,8 @@ class UEngineSamplerSetter : public  USetterBase
 {
 public:
 	std::shared_ptr <class UEngineSampler> Res;
-
+	void Setting();
+	void Reset();
 };
 
 class UEngineShader;
@@ -76,6 +79,8 @@ public:
 
 	void SettingTexture(std::string_view _TexName, std::shared_ptr<UEngineTexture> _Texture, std::string_view _SamperName);
 
+
+	void SettingAllShaderResources();
 private:
 	void ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode);
 
@@ -83,7 +88,7 @@ private:
 	std::map<EShaderType, std::map<std::string, UEngineConstantBufferSetter>> ConstantBuffers;
 
 	// textures
-	std::map<EShaderType, std::map<std::string, UEngineTexturSetter>> Textures;
+	std::map<EShaderType, std::map<std::string, UEngineTextureSetter>> Textures;
 
 	// »ùÇÃ·¯
 	std::map<EShaderType, std::map<std::string, UEngineSamplerSetter>> Samplers;

@@ -1,11 +1,13 @@
 #pragma once
-
+#include "EngineEnums.h"
 #include <EnginePlatform/EngineResources.h>
 
 #include "ThirdParty\DirectxTex\inc\\DirectXTex.h"
 
+class UEngineTextureSetter;
 class UEngineTexture : public UEngineResources<UEngineTexture>
 {
+	friend UEngineTextureSetter;
 public:
 	
 	// constrcuter destructer
@@ -76,5 +78,8 @@ private:
 	void CreateRenderTargetView();
 	void CreateShaderResourceView();
 	void CreateDepthStencilView();
+
+	void Setting(EShaderType _Type, UINT _Slot);
+	void Reset(EShaderType _Type, UINT _Slot);
 };
 

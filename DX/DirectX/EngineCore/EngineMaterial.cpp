@@ -3,6 +3,7 @@
 #include "EngineVertexShader.h"
 #include "EngineRasterizer.h"
 #include "EnginePixelShader.h"
+#include "EngineBlend.h"
 #include "EngineDepthStencil.h"
 
 UEngineMaterial::UEngineMaterial()
@@ -28,7 +29,7 @@ void UEngineMaterial::SetVertexShader(std::string_view _Name)
 
 void UEngineMaterial::VertexShaderSetting()
 {
-#ifdef DEBUG
+#ifdef _DEBUG
 	if (nullptr == VertexShader)
 	{
 		MsgBoxAssert("버텍스 쉐이더를 세팅하지 않고 랜더링 하려고 했습니다.");
@@ -51,7 +52,7 @@ void UEngineMaterial::SetRasterizer(std::string_view _Name)
 
 void UEngineMaterial::RasterizerSetting()
 {
-#ifdef DEBUG
+#ifdef _DEBUG
 	if (nullptr == Rasterizer)
 	{
 		MsgBoxAssert("레스터라이저를 세팅하지 않고 렌더링 하려고 했습니다.");
@@ -77,7 +78,7 @@ void UEngineMaterial::SetPixeShader(std::string_view _Name)
 
 void UEngineMaterial::PixelShaderSetting()
 {
-#ifdef DEBUG
+#ifdef _DEBUG
 	if (nullptr == PixelShader) 
 	{
 		MsgBoxAssert("픽셀 쉐이더를 세팅하지 않고 랜더링 하려고 했습니다.");
@@ -87,6 +88,30 @@ void UEngineMaterial::PixelShaderSetting()
 
 	PixelShader->Setting();
 }
+
+void UEngineMaterial::SetBlend(std::string_view _Nmae)
+{
+	Blend = UEngineBlend::FindRes(_Nmae);
+	if (nullptr == Blend)
+	{
+		MsgBoxAssert("존재하지 않는 블랜드 세팅하려고 했습니다.");
+		return;
+	}
+}
+
+void UEngineMaterial::BlendSetting()
+{
+#ifdef _DEBUG
+	if(nullptr==Blend)
+	{
+		MsgBoxAssert("블랜드 세팅하지 않고 랜더링 하려고 했습니다.");
+		return;
+	}
+#endif // _DEBUG
+
+	Blend->Setting();
+}
+
 
 void UEngineMaterial::SetDepthStencil(std::string_view _Name)
 {
@@ -101,7 +126,7 @@ void UEngineMaterial::SetDepthStencil(std::string_view _Name)
 
 void UEngineMaterial::DepthStencilSetting()
 {
-#ifdef DEBUG
+#ifdef _DEBUG
 	if (nullptr == DepthStencil)
 	{
 		MsgBoxAssert("깊이 세팅을 세팅하지 않고 랜더링 하려고 했습니다.");
