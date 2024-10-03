@@ -40,6 +40,9 @@ public:
 
 	UEngineSerializer Ser;
 	UINT BufferSize = 0;
+
+	void Setting();
+	void Reset();
 };
 
 class UEngineTextureSetter : public USetterBase
@@ -61,9 +64,13 @@ public:
 };
 
 class UEngineShader;
+class URenderUnit;
+class URenderer;
 class UEngineShaderResources 
 {
+	friend URenderUnit;
 	friend UEngineShader;
+	friend URenderer;
 public:
 	template<typename Value>
 	void SettingConstantBuffer(std::string_view _Name, Value& _Data)
@@ -81,6 +88,9 @@ public:
 
 
 	void SettingAllShaderResources();
+
+	void Reset();
+
 private:
 	void ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode);
 
@@ -94,7 +104,7 @@ private:
 	std::map<EShaderType, std::map<std::string, UEngineSamplerSetter>> Samplers;
 
 	// 구조체 버퍼
-	std::map<EShaderType, std::map<std::string, UEngineStructuredBufferSetter>> StructureBuffers;
+	std::map<EShaderType, std::map<std::string, UEngineStructuredBufferSetter>> StructuredBuffers;
 
 
 };

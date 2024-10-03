@@ -1,8 +1,9 @@
 #pragma once
 #include "EngineEnums.h"
+#include "EngineBuffer.h"
 
 class UEngineStructuredBufferSetter;
-class UEngineStructuredBuffer : public UEngineResources<UEngineStructuredBuffer>
+class UEngineStructuredBuffer : public UEngineResources<UEngineStructuredBuffer>, public UEngineBuffer
 {
 	friend UEngineStructuredBufferSetter;
 public:
@@ -49,7 +50,10 @@ public:
 		return Res;
 	}
 
+	void Release();
+	void Resize(int _Size);
 
+	void ChangeData(const void* _Data, UINT _Size);
 
 
 private:
@@ -57,8 +61,11 @@ private:
 
 	static std::map<EShaderType, std::map<std::string, std::map<int, std::shared_ptr<UEngineStructuredBuffer>>>> StructureBuffers;
 
-	ID3D10ShaderResourceView* SRV = nullptr; // 쉐이더 세팅해줄수 있는 권한
+	ID3D11ShaderResourceView* SRV = nullptr; // 쉐이더 세팅해줄수 있는 권한
 
 	UEngineSerializer Ser;
+
+	void Setting(EShaderType _Type, UINT _Slot);
+	void Reset(EShaderType _Type, UINT _Slot);
 };
 

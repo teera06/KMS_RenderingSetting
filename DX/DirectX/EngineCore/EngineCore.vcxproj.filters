@@ -279,6 +279,15 @@
     <ClCompile Include="EngineBlend.cpp">
       <Filter>Resources\RenderingSetting</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Object\Component\Rendering\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSprite.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Object\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -463,6 +472,15 @@
     </ClInclude>
     <ClInclude Include="EngineBlend.h">
       <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Object\Component\Rendering\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSprite.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Object\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

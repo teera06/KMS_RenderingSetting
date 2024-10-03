@@ -25,6 +25,24 @@ public:
 		return CreateResName("", _Name);
 	}
 
+	std::shared_ptr<UEngineVertexShader> GetVertexShader()
+	{
+		return VertexShader;
+	}
+	std::shared_ptr<UEnginePixelShader> GetPixelShader()
+	{
+		return PixelShader;
+	}
+	std::shared_ptr<UEngineRasterizer> GetRasterizer()
+	{
+		return Rasterizer;
+	}
+
+	std::shared_ptr<UEngineBlend> GetBlend()
+	{
+		return Blend;
+	}
+
 	// 버텍스 쉐이더
 	void SetVertexShader(std::string_view _Name);
 	void VertexShaderSetting();

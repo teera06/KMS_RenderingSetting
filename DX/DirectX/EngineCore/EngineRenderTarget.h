@@ -4,9 +4,17 @@
 // 랜더 타켓 -> 그 이미지를 편집하고 그리고 복사하는 기능을 가진 애
 // 효과를 준다 -> 그린다.
 class UEngineTexture;
+class UEngineGraphicDevice;
+class ULevel;
+
+class URenderUnit;
 class UEngineRenderTarget : public UEngineResources<UEngineRenderTarget>, public std::enable_shared_from_this<UEngineRenderTarget>
 {
+	friend ULevel;
 
+	friend UEngineGraphicDevice;
+
+	static URenderUnit CopyUnit;
 public:
 	// constrcuter destructer
 	UEngineRenderTarget();
@@ -31,9 +39,22 @@ public:
 		return NewRes;
 	}
 
+	std::shared_ptr<UEngineTexture> GetTexure(int _Index = 0)
+	{
+		return Textures[_Index];
+	}
+
+	void CreateDepthTexture(int _Index = 0);
 
 	void Clear();
 
+	void Setting(bool IsDepth = false);
+
+	// _Other 를 나한테 카피한다.
+	void Copy(std::shared_ptr<UEngineRenderTarget> _Other);
+
+	// _Other 를 나한테 합친다한다.
+	void Merge(std::shared_ptr<UEngineRenderTarget> _Other, int _Index = 0);
 private:
 	// 텍스처 여러개를 엮어서 사용할 수 있게 한다.
 	std::vector<std::shared_ptr<UEngineTexture>> Textures;
@@ -44,7 +65,7 @@ private:
 
 	void AddNewTexture(std::shared_ptr<UEngineTexture> _Texture, const float4& _Color);
 
-	
+	static void RenderTargetInit();
 
 	
 

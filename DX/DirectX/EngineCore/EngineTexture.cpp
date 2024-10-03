@@ -27,6 +27,61 @@ UEngineTexture::~UEngineTexture()
 
 }
 
+Color8Bit UEngineTexture::GetColor(unsigned int _X, unsigned int _Y, Color8Bit _DefaultColor)
+{
+	if (_X < 0)
+	{
+		return _DefaultColor;
+	}
+
+	if (_Y < 0)
+	{
+		return _DefaultColor;
+	}
+
+
+	if (_X >= GetScale().uiX())
+	{
+		return _DefaultColor;
+	}
+
+	if (_Y >= GetScale().uiY())
+	{
+		return _DefaultColor;
+	}
+
+	// 이미지의 포맷이 굉장히 다양하다.
+	// RGBA
+
+	// 4바이트 컬러?
+	DXGI_FORMAT Fmt = Image.GetMetadata().format;
+
+	// 로드한 이미지만 픽셀충돌이 될것이다.
+	// 1바이트 짜리 자료형
+	unsigned char* Ptr = Image.GetPixels();
+
+	switch (Fmt)
+	{
+	case DXGI_FORMAT_B8G8R8A8_UNORM:
+	case DXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
+	{
+		Color8Bit Result;
+		Ptr += ((_Y * GetScale().iX()) + _X) * 4;
+		Result.B = Ptr[0];
+		Result.G = Ptr[1];
+		Result.R = Ptr[2];
+		Result.A = Ptr[3];
+		return Result;
+	}
+	default:
+		MsgBoxAssert("아직 처리할수 없는 GetPixel 포맷입니다");
+		break;
+	}
+
+
+	return Color8Bit();
+}
+
 void UEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc)
 {
 	Desc = _Desc;
@@ -53,6 +108,56 @@ void UEngineTexture::ResCreate(ID3D11Texture2D* _Texture)
 	Texture2D->GetDesc(&Desc);
 
 	CreateRenderTargetView();
+
+}
+
+void UEngineTexture::ResLoad()
+{
+	UEnginePath File = GetEnginePath();
+
+	std::string Ext = UEngineString::ToUpper(File.GetExtension());
+
+	std::wstring wPath = UEngineString::AnsiToUniCode(File.GetFullPath());
+
+	if (Ext == ".DDS")
+	{
+		if (S_OK != DirectX::LoadFromDDSFile(wPath.c_str(), DirectX::DDS_FLAGS_NONE, &Data, Image))
+		{
+			MsgBoxAssert("DDS 파일로드에 실패");
+		}
+	}
+	else if (Ext == ".TGA")
+	{
+		if (S_OK != DirectX::LoadFromTGAFile(wPath.c_str(), DirectX::TGA_FLAGS_NONE, &Data, Image))
+		{
+			MsgBoxAssert("TGA 파일로드에 실패했습니다.");
+		};
+	}
+	else
+	{
+		// Png jpg 등등이 else
+		if (S_OK != DirectX::LoadFromWICFile(wPath.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
+		{
+			MsgBoxAssert("PNG 파일로드에 실패했습니다.");
+		};
+	}
+
+	// 마소 사람이 만들어준 전역 함수로 자신이 로드한 데이터를 가지고 쉐이더 리소스 뷰를 만들 수 있게 처리
+
+	if (S_OK != -DirectX::CreateShaderResourceView(
+		GEngine->GetDirectXDevice(),
+		Image.GetImages(),
+		Image.GetImageCount(),
+		Image.GetMetadata(),
+		&SRV
+	))
+	{
+		MsgBoxAssert("텍스처 쉐이더 세팅권한 생성에 실패했습니다." + GetName());
+		return;
+	}
+
+	Desc.Width = static_cast<UINT>(Data.width);
+	Desc.Height = static_cast<UINT>(Data.height);
 
 }
 

@@ -6,7 +6,7 @@
 #include <EngineCore/Image.h>
 #include <EngineCore/Camera.h>
 #include <EngineBase/EngineSerializer.h>
-#include <EngineCore/BlurEffect.h>
+//#include <EngineCore/BlurEffect.h>
 #include "MyWidget.h"
 
 std::atomic<bool> APlayGameMode::PlayLevelLoading = true;
@@ -91,7 +91,7 @@ void APlayGameMode::BeginPlay()
 	// GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	// GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	// GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
-	GetWorld()->GetMainCamera()->GetCameraTarget()->AddEffect<UBlurEffect>();
+	//GetWorld()->GetMainCamera()->GetCameraTarget()->AddEffect<UBlurEffect>();
 
 	Super::BeginPlay();
 

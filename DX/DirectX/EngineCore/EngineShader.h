@@ -20,7 +20,7 @@ public:
 	UEngineShader& operator=(const UEngineShader& _Other) = delete;
 	UEngineShader& operator=(UEngineShader&& _Other) noexcept = delete;
 
-	std::shared_ptr<UEngineShaderResources> Resource;
+	std::shared_ptr<UEngineShaderResources> Resources;
 
 protected:
 

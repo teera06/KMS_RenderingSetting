@@ -34,6 +34,20 @@ public:
 		return NewRes;
 	}
 
+	static std::shared_ptr<UEngineTexture> Load(std::string_view _Path)
+	{
+		UEnginePath NewPath = UEnginePath(std::filesystem::path(_Path));
+		std::string FileName = NewPath.GetFileName();
+		return Load(_Path, FileName);
+	}
+
+	static std::shared_ptr<UEngineTexture> Load(std::string_view _Path, std::string_view _Name)
+	{
+		std::shared_ptr<UEngineTexture> NewRes = CreateResName(_Path, _Name);
+		NewRes->ResLoad();
+		return NewRes;
+	}
+
 	ID3D11RenderTargetView* GetRTV()
 	{
 		return RTV;
@@ -48,6 +62,18 @@ public:
 	{
 		return DSV;
 	}
+
+	float4 GetScale()
+	{
+		return float4(Desc.Width, Desc.Height);
+	}
+
+	Color8Bit GetColor(float4 _Pos, Color8Bit _DefaultColor)
+	{
+		return GetColor(_Pos.iX(), _Pos.iY(), _DefaultColor);
+	}
+
+	Color8Bit GetColor(unsigned int _X, unsigned int _Y, Color8Bit _DefaultColor);
 
 
 private:
@@ -75,6 +101,8 @@ private:
 
 	void ResCreate(ID3D11Texture2D* _Texture);
 	
+	void ResLoad();
+
 	void CreateRenderTargetView();
 	void CreateShaderResourceView();
 	void CreateDepthStencilView();

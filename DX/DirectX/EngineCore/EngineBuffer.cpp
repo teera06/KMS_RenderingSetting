@@ -7,9 +7,13 @@ UEngineBuffer::UEngineBuffer()
 
 UEngineBuffer::~UEngineBuffer()
 {
+	Release();
 }
 
 void UEngineBuffer::Release()
 {
-	if(nullptr!=BUffer)
+	if (nullptr != Buffer)
+	{
+		Buffer->Release();
+	}
 }

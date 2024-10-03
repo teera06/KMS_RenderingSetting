@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Camera.h>
 
 //void Function(URenderer* Renderer)
 //{

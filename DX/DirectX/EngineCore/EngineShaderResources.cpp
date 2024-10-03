@@ -128,25 +128,33 @@ void UEngineShaderResources::SettingAllShaderResources()
 		}
 	}
 
-	for (std::pair<const EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& Pair : ConstantBuffers)
+	
+	for (std::pair<const EShaderType, std::map<std::string, UEngineSamplerSetter>>& Pair : Samplers)
 	{
-		std::map<std::string, UEngineConstantBufferSetter>& ResMap = Pair.second;
+		std::map<std::string, UEngineSamplerSetter>& ResMap = Pair.second;
 
-		for (std::pair<const std::string, UEngineConstantBufferSetter>& Setter : ResMap)
+		for (std::pair<const std::string, UEngineSamplerSetter>& Setter : ResMap)
 		{
 			Setter.second.Setting();
 		}
 	}
 
-	for (std::pair<const EShaderType, std::map<std::string, UEngineConstantBufferSetter>>& Pair : ConstantBuffers)
+	for (std::pair<const EShaderType, std::map<std::string, UEngineStructuredBufferSetter>>& Pair : StructureBuffers)
 	{
-		std::map<std::string, UEngineConstantBufferSetter>& ResMap = Pair.second;
+		std::map<std::string, UEngineStructuredBufferSetter>& ResMap = Pair.second;
 
-		for (std::pair<const std::string, UEngineConstantBufferSetter>& Setter : ResMap)
+		for (std::pair<const std::string, UEngineStructuredBufferSetter>& Setter : ResMap)
 		{
 			Setter.second.Setting();
 		}
 	}
+}
+
+void UEngineShaderResources::Reset()
+{
+	ConstantBuffers.clear();
+	Textures.clear();
+	Samplers.clear();
 }
 
 void UEngineShaderResources::ShaderResourcesCheck(EShaderType _Type, std::string_view _EntryName, ID3DBlob* _ShaderCode)
@@ -275,8 +283,28 @@ void UEngineConstantBufferSetter::Reset()
 
 void UEngineStructuredBufferSetter::PushData(const void* _Data, UINT _Size)
 {
-
+	Ser.Write(_Data, _Size);
 }
+
+void UEngineStructuredBufferSetter::Setting()
+{
+	if (0 == Ser.WriteSize())
+	{
+		MsgBoxAssert(Res->GetName() + "구조화 버퍼에 크기가 0");
+		return;
+	}
+
+	Res->ChangeData(Ser.DataPtr(), Ser.WriteSize());
+
+	Res->Setting(Type, Slot);
+}
+
+void UEngineStructuredBufferSetter::Reset()
+{
+	Res->Reset(Type, Slot);
+	Ser.ResetWrite();
+}
+
 
 void UEngineTextureSetter::Setting()
 {

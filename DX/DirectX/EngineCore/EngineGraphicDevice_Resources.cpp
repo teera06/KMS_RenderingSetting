@@ -12,7 +12,9 @@
 #include "EngineRasterizer.h"
 #include "EngineDepthStencil.h"
 #include "EngineBlend.h"
+#include "EngineTexture.h"
 
+#include "EngineRenderTarget.h"
 
 // 인풋어셈블러 1과 인풋어셈블러 2의 리소스들을 만들어내는 이니셜라이즈
 void MeshInit()
@@ -206,6 +208,18 @@ void BlendInit()
 	UEngineBlend::Create("EngineBase", Desc);
 }
 
+void EngineTexturLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("EngineResources");
+	std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+
+	for (UEngineFile& File : Files)
+	{
+		UEngineTexture::Load(File.GetFullPath());
+	}
+}
+
 void UEngineGraphicDevice::EngineResourcesInit()
 {
 	MeshInit(); // 버텍스 버퍼, 인데스버퍼 세팅
@@ -216,5 +230,9 @@ void UEngineGraphicDevice::EngineResourcesInit()
 	Depth_StencilInit(); // 깊이
 	BlendInit(); // 블랜드
 
+	EngineTexturLoad(); // 엔진 테스트 텍스처 로드
+
+	// 랜더 타켓 
+	UEngineRenderTarget::RenderTargetInit();
 }
 

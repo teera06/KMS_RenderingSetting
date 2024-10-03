@@ -6,7 +6,7 @@
 #include <EngineCore/Image.h>
 #include <EngineCore/Camera.h>
 #include <EngineBase/EngineSerializer.h>
-#include <EngineCore/BlurEffect.h>
+//#include <EngineCore/BlurEffect.h>
 #include <EngineCore/EngineEditorGUI.h>
 #include "MyWidget.h"
 #include "ServerPlayer.h"
